@@ -1,0 +1,4 @@
+<apex:page contentType="text/csv#MyReportData.csv">
+Id, Name, Date, IsClosed
+0a123432434, TestOpp, 12/12/2016, true
+</apex:page>

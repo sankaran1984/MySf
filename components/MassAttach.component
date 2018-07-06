@@ -1,0 +1,543 @@
+<apex:component >
+    
+    <!-- List of attributes passed to this component -->
+    <apex:attribute type="Id" name="parentRecord" description="Pass the Record Id to where all the attachments should be stored"/>
+    <apex:attribute type="String" name="ObjectName" description="Pass the Object Name like Account, Case, etc"/>
+    <apex:attribute type="String" name="parentRecordName" description="Pass the Record Name to where attachments should be stored"/>    
+    
+    <!-- Scripts & CSS Include -->
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"/>
+    <apex:stylesheet value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
+    
+    <style>             
+        .AttachArea {
+            min-height: 200px;
+            border: 0.5px solid #bfb7b7;
+            background-color: #F8F8F8;
+            border-radius: 5px;
+            display : flex;
+            font-size : 120%;
+            width : 80%;
+        }
+        
+        .DragAndDropArea {
+            border: 5px dashed #DDD;
+            width: 30%;
+        }
+        
+        .DragAndDropArea p {
+            text-align : center;
+        }
+        
+        .DragAndDropArea.highlighted {
+            border: 4px dotted #b9b6b6;
+            color: gray;
+        }
+        
+        .DropText.highlighted {
+            font-size: 32px;
+            color : black;
+        }
+        
+        .UploadArea {
+            width : 70%;
+            height : 100%;
+            padding-left : 30px;
+        }
+        
+        .UploadArea table {
+            table-layout : fixed;
+            width : 100%;
+            display : none;
+        }
+        
+        .UploadArea table th:nth-child(1){
+            width : 10%;
+        }
+        
+        .UploadArea table th:nth-child(2){
+            width : 40%;
+        }           
+        
+        .UploadArea th {
+            text-align : left;
+        }   
+
+        .UploadArea a {
+            cursor : pointer;
+            text-decoration : underline;
+        }
+        
+        .Status {
+            position : relative;
+        }
+
+        .ProgressLabel {
+            position: absolute;
+            left: 30%;
+            top: 0%;
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #fff;
+            font-size : 10px;
+        }
+        
+        .ui-progressbar {
+            width : 50%;
+            height : 50%;
+        }
+        
+    </style>
+    
+    <!-- Main Attachment Body -->
+    <apex:sectionHeader title="Attach File to {!ObjectName} {!parentRecordName}"/>
+    <apex:outputPanel layout="block" styleClass="AttachArea">
+        
+        <!-- Drag & Drop Section -->
+        <apex:outputPanel styleClass="DragAndDropArea">         
+            <p>
+                <br/><br/><br/>
+                Drag and <span class="DropText">Drop </span> files <span class="DropText">here</span> 
+                <br/><br/>
+                (or) 
+                <br/><br/>
+                click &nbsp; 
+                <apex:outputLink styleClass="UploadLink">upload</apex:outputLink>
+            </p>
+            <input type="file" class="FileAttachInp" style="display:none;" multiple="true"/>
+        </apex:outputPanel>   
+
+        <apex:outputPanel layout="block" styleClass="UploadArea">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Action
+                        </th>
+                        <th>
+                            File Name
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                    </tr>
+                </thead>
+                
+                <!-- Uploaded Files Area -->
+                <tbody class="UploadedFiles">
+                    <tr class="UploadFilesLine"></tr>
+                </tbody>
+                
+                <!-- Upload Progress Files Area -->
+                <tbody class="UploadingFiles">
+                    <tr class="UploadingFilesLine"></tr>                       
+                </tbody>
+                
+                <!-- Upload In Queue Files Area -->
+                <tbody class="UploadWaitingFiles">
+                    <tr class="UploadWaitingFilesLine"></tr>                       
+                </tbody>
+            </table>
+        </apex:outputPanel>                 
+          
+    </apex:outputPanel>
+        
+    <script>    
+        window.onload = function() {    
+            main();
+        }
+        
+        function main() {
+            var $ = jQuery.noConflict();
+            var fileQueue = [];
+            var uploadRegister = {};
+            var isUploaderRunning = false;
+            
+            /* Controllers */
+            $('.DragAndDropArea').on('dragstart dragover', function(e){
+                highlightAttachArea(this);
+            }).on('dragenter dragover dragleave drop', function(e){
+                e.stopPropagation();
+                e.preventDefault();            
+            }).on('dragend drop', function(evt) {
+                restoreAttachArea(this);
+            }).on('drop', function(evt) {
+                handleSelectedFiles(evt.originalEvent.dataTransfer.files);
+            });
+            
+            // Add Event handler for 'Upload' link
+            $('.UploadLink').on('click', function() {
+                $('.FileAttachInp').click();
+                return false;
+            });
+
+            // Add Event handler for user selecting the files            
+            $('.FileAttachInp').on('change', function(evt) {
+                handleSelectedFiles(evt.target.files);
+            }).on('click', function(evt) {
+                this.value = null;
+            });
+            
+            // Upload the files user selected, one by one
+            function handleSelectedFiles(files) {
+                try {
+                    for(var i=0; i < files.length; i++) {
+                        fileQueue.push(files[i]);   
+                        showFileInQueue(files[i]);                    
+                    }
+                    
+                    uploadNext();                    
+                } catch(e) {
+                    alert(e);
+                }
+                                
+                // Kick Start File Uploading
+                function startUploading() {                    
+                    if (fileQueue.length != 0) {
+                        var file = fileQueue.pop();
+                        uploadFile(file, afterUploadFile);
+                        
+                        showUploadTable();
+                        removeFileInQueue(file);
+                        showProgressForFile(file, 0);                        
+                    }
+                    
+                    // After a file upload
+                    function afterUploadFile(recordId, fileName) {
+                        delete uploadRegister[fileName];                    
+                    
+                        removeFileInProgress(file);
+                        showUploadedFile(fileName, recordId);
+
+                        uploadNext();                        
+                    }                    
+                }
+                
+                function uploadNext() {
+                    if (Object.keys(uploadRegister).length == 0) {
+                        startUploading();
+                    }                    
+                }
+                
+                // upload a file
+                function uploadFile(file, afterUploadFile) {
+                    
+                    // upload the attachment
+                    var reader = new FileReader();
+                    reader.readAsArrayBuffer(file);
+                    
+                    // Read the content of file & send to Salesforce
+                    reader.onload = function(evt) {
+                        var data = evt.target.result;
+                        sendAttachment({
+                            'Name' : file.name,
+                            'Body' : data
+                        }, progressUpdate, afterUploadFile);
+                    }
+                    
+                    function progressUpdate(progress) {
+                        showProgressForFile(file, progress);
+                    }
+                                        
+                }
+                
+                // Send attachment to Salesforce
+                function sendAttachment(attachRec, progressUpdate, afterSentSuccess) {
+                    var req = new XMLHttpRequest();
+                    uploadRegister[attachRec.Name] = req;
+                    
+                    // Set URL
+                    req.open(
+                        'POST',
+                        '/services/data/v35.0/chatter/feed-elements'
+                    );
+                    
+                    // Set Headers
+                    req.setRequestHeader('Authorization', 'OAuth {!$Api.Session_ID}');
+                    req.setRequestHeader('Content-Type', 'multipart/form-data; boundary=a7V4kRcFA8E79pivMuV2tukQ85cmNKeoEgJgq');
+                    req.setRequestHeader('Accept', 'application/json');
+                    
+                    // Handler for progress
+                    req.upload.onprogress = function(evt){
+                        if (evt.lengthComputable) {
+                            var percentComplete = evt.loaded / evt.total;
+                            progressUpdate(parseInt(percentComplete * 100));
+                        }
+                    };
+                    
+                    // Handler for Post Response
+                    req.onreadystatechange = function() {
+                        if(req.readyState === XMLHttpRequest.DONE && req.status === 201) {
+                            var resp = JSON.parse(req.responseText);                        
+                            afterSentSuccess(resp['id'], attachRec.Name);
+                        }
+                    };
+                    
+                    // Send the request
+                    req.send(getMessageBody(attachRec));
+                } 
+                
+                function getMessageBody(file) {
+                    var data1 = [
+                        '',
+                        '--a7V4kRcFA8E79pivMuV2tukQ85cmNKeoEgJgq',
+                        'Content-Disposition: form-data; name="json"',
+                        'Content-Type: application/json; charset=UTF-8',
+                        '',
+                        '{',
+                           '"body":{',
+                              '"messageSegments":[',
+                                 '{',
+                                    '"type":"Text",',
+                                    '"text":"Mass Uploaded by {!$User.FirstName} {!$User.LastName} "',
+                                 '}',
+                              ']',
+                           '},',
+                           '"capabilities":{',
+                              '"content":{',
+                                 '"description":"Part of Mass Uploaded file",',
+                                 '"title":"' + file.Name + '"',
+                              '}',
+                           '},',
+                           '"feedElementType":"FeedItem",',
+                           '"subjectId":"{!parentRecord}"',
+                        '}',
+                        '',
+                        '--a7V4kRcFA8E79pivMuV2tukQ85cmNKeoEgJgq',
+                        'Content-Disposition: form-data; name="feedElementFileUpload"; filename="' + file.Name + '"',
+                        'Content-Type: application/octet-stream;',
+                        '',
+                        ''
+                    ];
+                        
+                    var data2 = [
+                        '',
+                        '--a7V4kRcFA8E79pivMuV2tukQ85cmNKeoEgJgq--'
+                    ];
+                 
+                    return new Blob([data1.join('\r\n'), file.Body, data2.join('\r\n')]); 
+                }             
+            }
+            
+            function cancelUpload(fileName) {
+                if(fileName in uploadRegister) {
+                    uploadRegister[fileName].abort();
+                    delete uploadRegister[fileName];
+                    
+                    removeFileInProgress({name : fileName});
+                    
+                    uploadNext();
+                }
+            }
+            
+            function removeFromQueue(fileName) {
+                fileQueue = fileQueue.filter(function(fileInQueue) {
+                    return fileName != fileInQueue.name;
+                });
+            }            
+            
+            function cancelFileInQueue(fileName) {
+                removeFromQueue(fileName);
+                removeFileInQueue({name : fileName});
+            }  
+            
+            function deleteUploadedFile(recordId) {
+                var req = new XMLHttpRequest();
+                
+                // Set URL
+                req.open(
+                    'DELETE',
+                    '/services/data/v35.0/chatter/feed-elements/' + recordId
+                );
+                
+                // Set Headers
+                req.setRequestHeader('Authorization', 'Bearer {!$Api.Session_ID}');
+                req.setRequestHeader('Content-Type', 'application/json;');
+                
+                // Handler for Post Response
+                req.onreadystatechange = function() {
+                    if(req.readyState === XMLHttpRequest.DONE && req.status === 204) {
+                        removeUploadedFile(recordId);
+                    }
+                };
+                
+                // Send the request
+                req.send();
+                            
+            }                      
+            
+            /* View */
+            function showUploadTable() {
+                $('.UploadArea table').show();
+            }
+            
+            function hideUploadTable() {
+                $('.UploadArea table').hide();            
+            }
+            
+            function showFileInQueue(file) {            
+                // row
+                var queueLine = $('<tr/>')
+                    .attr('fileName', file.name)
+                    .addClass('UploadWaitingFilesLine')
+                    .append(
+                        $('<td/>').append(
+                            // Action
+                            $('<a/>')
+                            .on('click', function() {
+                                cancelFileInQueue(file.name);
+                                return false;
+                            })
+                            .html('cancel')                            
+                        )
+                    )
+                    .append(
+                        $('<td/>').append(
+                            // File Name            
+                            $('<div/>')
+                            .html(file.name)                            
+                        )
+                    )
+                    .append(
+                        $('<td/>').append(
+                            // Status
+                            $('<div/>')
+                            .addClass('Status')            
+                            .progressbar({
+                                value : false,
+                            })
+                            .height('12px')
+                            .width('200px')
+                        )
+                    )                              
+                
+                queueLine.appendTo($('.UploadWaitingFiles'));
+            }
+            
+            function removeFileInQueue(file) {
+                $('.UploadWaitingFilesLine[fileName="'+file.name+'"]').remove();
+            }
+            
+            function showProgressForFile(file, progress) {
+            
+                // Just started
+                if (progress == 0) {
+                
+                    // row
+                    var progressLine = $('<tr/>')
+                        .attr('fileName', file.name)
+                        .addClass('UploadingFilesLine')
+                        .append(
+                            $('<td/>').append(
+                                // Action
+                                $('<a/>')
+                                .on('click', function() {
+                                    cancelUpload(file.name);
+                                    return false;
+                                })
+                                .html('cancel')                            
+                            )
+                        )
+                        .append(
+                            $('<td/>').append(
+                                // File Name            
+                                $('<div/>')
+                                .html(file.name)                            
+                            )
+                        )
+                        .append(
+                            $('<td/>').append(
+                                // Status
+                                $('<div/>')
+                                .addClass('Status')
+                                .progressbar({
+                                    value : false,
+                                })
+                                .height('12px')
+                                .width('200px')
+                                .append(
+                                    $('<div/>')
+                                    .addClass('ProgressLabel')
+                                    .html('Ready to Upload')
+                                )
+                            )
+                        )                
+                                    
+                    progressLine.appendTo($('.UploadingFiles'));                
+                    
+                // Progressing                    
+                } else {
+                    $('.UploadingFilesLine[fileName="'+file.name+'"] .Status')
+                    .progressbar('value', progress)
+                    .find('.ProgressLabel')
+                    .html(progress + '%');
+                }
+            }
+            
+            function removeFileInProgress(file) {
+                $('.UploadingFilesLine[fileName="'+file.name+'"]').remove();            
+            }
+            
+            function showUploadedFile(fileName, recordId) {
+            
+                // row
+                var uploadedLine = $('<tr/>')
+                    .attr('recordId', recordId)
+                    .addClass('UploadFilesLine')
+                    .append(
+                        $('<td/>').append(
+                            // Action
+                            $('<a/>')
+                            .on('click', function() {
+                                deleteUploadedFile(recordId);
+                                return false;
+                            })
+                            .html('Delete')                            
+                        )
+                    )
+                    .append(
+                        $('<td/>').append(
+                            // File Name            
+                            $('<div/>')
+                            .html(fileName)                            
+                        )
+                    )
+                    .append(
+                        $('<td/>').append(
+                            // Status
+                            $('<div/>')
+                            .addClass('Status')  
+                            .progressbar({
+                                value : 100,
+                            })
+                            .height('12px')
+                            .width('200px')
+                            .append(
+                                $('<div/>')
+                                .addClass('ProgressLabel')
+                                .html('Completed')
+                            )
+                        )
+                    )           
+            
+                uploadedLine.appendTo($('.UploadedFiles'));                     
+            }
+            
+            function removeUploadedFile(recordId) {
+                $('.UploadFilesLine[recordId="'+recordId+'"]').remove();  
+            }
+            
+            function highlightAttachArea(area) {
+                $(area).addClass('highlighted');
+                $('.DropText').addClass('highlighted');
+            }           
+            
+            function restoreAttachArea(area) {
+                $(area).removeClass('highlighted');
+                $('.DropText').removeClass('highlighted');
+            }             
+        }
+        
+    </script>
+    
+</apex:component>

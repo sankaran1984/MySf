@@ -1,0 +1,5 @@
+<apex:page controller="testctrlr_02052017" action="{!redirect_my_page}">
+    
+    Hello Page 
+    
+</apex:page>

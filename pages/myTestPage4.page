@@ -1,0 +1,11 @@
+<apex:page >
+    <apex:composition template="myTestTemplatePage">
+        <apex:define name="name">My name is sankaran</apex:define>
+        <apex:outputText >This is extra line in composition </apex:outputText>
+    </apex:composition>
+    <apex:outputPanel id="SankPanel">
+        <apex:outputText >This is from Parent page</apex:outputText>
+    </apex:outputPanel>
+    <apex:composition template="myTestTemplatePage">
+    </apex:composition>
+</apex:page>

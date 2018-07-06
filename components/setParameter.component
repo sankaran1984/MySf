@@ -1,0 +1,4 @@
+<apex:component >
+    <apex:attribute type="string" name="paramname" description="The name of the controller parameter"/>
+    <apex:attribute type="string" name="paramvalue" assignTo="{!paramname}" description="The value needs to be set"/>
+</apex:component>

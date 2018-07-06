@@ -1,0 +1,48 @@
+<apex:page standardController="Opportunity" recordSetVar="Opps">
+    
+    <!-- Local Variables -->
+    <apex:variable var="EditId" value="{!IF($CurrentPage.parameters.EditRecordId!=Null, 
+                                       		$CurrentPage.parameters.EditRecordId, Null)}"/>   
+    
+    <apex:form >
+        <apex:pageblock > 
+            
+            <apex:pageBlockButtons rendered="{!EditId != Null}">
+                <apex:commandButton value="Save" action="{!save}" reRender="None" />
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockTable value="{!Opps}" var="Opp">   
+                
+                <apex:column value="{!Opp.Name}" ondblclick="redirect('{!Opp.Id}')" rendered="{!EditId != Opp.Id}"/>
+                <apex:column headerValue="Name" rendered="{!EditId == Opp.Id}">
+                    <apex:inputField value="{!Opp.Name}"/>
+                </apex:column>
+                
+                <apex:column value="{!Opp.StageName}" ondblclick="redirect('{!Opp.Id}')" rendered="{!EditId != Opp.Id}"/>
+                <apex:column headerValue="StageName" rendered="{!EditId == Opp.Id}">
+                    <apex:inputField value="{!Opp.StageName}"/>
+                </apex:column>
+                
+                <apex:column value="{!Opp.CloseDate}" ondblclick="redirect('{!Opp.Id}')" rendered="{!EditId != Opp.Id}"/>
+                <apex:column headerValue="CloseDate" rendered="{!EditId == Opp.Id}">
+                    <apex:inputField value="{!Opp.CloseDate}"/>
+                </apex:column>
+
+                <apex:column value="{!Opp.AccountId}" ondblclick="redirect('{!Opp.Id}')" rendered="{!EditId != Opp.Id}"/>
+                <apex:column headerValue="AccountId" rendered="{!EditId == Opp.Id}">
+                    <apex:inputField value="{!Opp.AccountId}"/>
+                </apex:column>     
+                
+            </apex:pageBlockTable>
+                                 
+        </apex:pageblock>
+    </apex:form>
+    
+    <script>
+    	function redirect(recId) {
+            window.location.href = '{!$Page.testpage_22022017}?' + 'EditRecordId=' + recId + 
+                				   '&retURL=' + '{!$Page.testpage_22022017}';
+        }
+    </script>
+</apex:page>

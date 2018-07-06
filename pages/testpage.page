@@ -1,0 +1,14 @@
+<apex:page standardcontroller="Task" id="thePage">
+
+   <apex:detail inlineedit="true"/>   
+   <c:TestComp /> 
+
+<!--
+    <apex:repeat value="{!strings}" var="string" id="theRepeat">
+
+        <apex:outputText value="{!string}" id="theValue"/><br/>
+
+    </apex:repeat>
+-->
+
+</apex:page>

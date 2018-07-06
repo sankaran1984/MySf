@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>sankaranid@gmail.com</contactEmail>
+    <contactPhone>+447553088713</contactPhone>
+    <label>JQueryApp</label>
+    <oauthConfig>
+        <callbackUrl>https://sankaran1984.github.io/jQueryApp/home.html</callbackUrl>
+        <consumerKey>3MVG99qusVZJwhskaDilcSet08IO2A..05XtfmAYGwTtPHURyQCikC_wpjg5AWMIqTgi1CVzX8t_KxdBgR1nb</consumerKey>
+        <scopes>Full</scopes>
+    </oauthConfig>
+</ConnectedApp>

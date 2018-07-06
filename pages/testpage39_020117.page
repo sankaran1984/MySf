@@ -1,0 +1,49 @@
+<apex:page standardController="Opportunity" extensions="testcls39_02012017">
+    
+    <style>
+        .UploadBtn {
+            display : block;
+        	width: 100px;
+            height: 30px;
+        	padding-top: 15px;
+        	border-radius : 5px;
+            border: 1px solid black;
+            text-align: center;
+            background-color: #099ad6;  
+        	cursor : pointer;
+        }
+        
+        .UploadBtn:hover {
+        	background-color: #d5ecf2;
+        }
+        
+        .UploadBtn input {
+        	display : none;
+        }
+    </style>
+    
+    <apex:form id="UploadForm">
+        
+        <!-- Classic Style -->
+        <apex:outputPanel layout="none">
+            <apex:sectionHeader title="Classic Style"/>
+            <!-- Upload button -->
+            <apex:inputFile value="{!att.body}" fileName="{!att.Name}"/> <br/>
+            <apex:commandButton value="Upload" action="{!addAttach}"/>
+        </apex:outputPanel>
+        
+        <!-- Modern Style (Input field inside label )-->
+        <apex:outputPanel layout="none">
+            <apex:sectionHeader title="Modern Style"/>
+            <apex:outputLabel value="Upload" styleClass="UploadBtn">
+                <apex:actionFunction name="addAttach_js" action="{!addAttach}"/>   
+                <apex:inputFile value="{!att.body}" fileName="{!att.Name}" onchange="addAttach_js();"/>
+            </apex:outputLabel>
+		</apex:outputPanel> 
+
+        <!-- Upload status -->
+        <apex:outputText value="Attachment created successfully" rendered="{!att.Id != Null}"/>
+        
+    </apex:form>
+    
+</apex:page>

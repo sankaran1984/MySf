@@ -1,0 +1,21 @@
+<apex:page standardController="Contact" extensions="vfEmailController">
+    {!$ObjectType.Contact}
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:form >
+        <apex:panelGrid columns="2">
+            <apex:selectCheckboxes value="{!SelectedOptions}" layout="PageDirection">
+                <apex:selectOptions value="{!SelectOptions}"></apex:selectOptions>
+            </apex:selectCheckboxes>
+            <apex:outputPanel >
+                <apex:panelGrid columns="2">
+                    <apex:outputLabel for="sub">Subject:</apex:outputLabel>
+                    <apex:inputText id="sub" value="{!subject}"/>
+                    <apex:outputLabel for="body">Message:</apex:outputLabel>
+                    <apex:inputTextarea id="body" cols="50" rows="10" value="{!body}"/>
+                </apex:panelGrid>
+                <apex:commandButton value="send" action="{!sendEmail}" rerender="statusBox"/>
+                <apex:outputText value="{!sentStatus}" id="statusBox"></apex:outputText>
+            </apex:outputPanel>
+        </apex:panelGrid>
+    </apex:form>
+</apex:page>

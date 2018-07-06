@@ -1,0 +1,9 @@
+<apex:page >
+    
+    <apex:sectionHeader title="Styling based on User Configuration"/>
+    
+    <!-- Show a text with Color, Configured for ORG -->
+    <apex:outputText value="My Sample Text"
+                     style="color:{!$Setup.TestSettings__c.Color__c};font-size:{!$Setup.TestSettings__c.size__c}px;"/>
+    
+</apex:page>

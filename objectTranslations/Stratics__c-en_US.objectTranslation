@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Stratics</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Stratics</value>
+    </caseValues>
+    <fields>
+        <help><!-- Account id --></help>
+        <label><!-- Account id --></label>
+        <name>Account_id__c</name>
+    </fields>
+    <fields>
+        <help><!-- End Point --></help>
+        <label><!-- End Point --></label>
+        <name>End_Point__c</name>
+    </fields>
+    <fields>
+        <help><!-- api key --></help>
+        <label><!-- api key --></label>
+        <name>api_key__c</name>
+    </fields>
+    <fields>
+        <help><!-- dnc type --></help>
+        <label><!-- dnc type --></label>
+        <name>dnc_type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Do you want to log success ? --></help>
+        <label><!-- Do you want to log success ? --></label>
+        <name>isLogSuccess__c</name>
+    </fields>
+    <fields>
+        <help><!-- reason --></help>
+        <label><!-- reason --></label>
+        <name>reason__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

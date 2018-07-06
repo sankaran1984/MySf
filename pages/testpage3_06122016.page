@@ -1,0 +1,49 @@
+<apex:page controller="testcls3_06122016">
+    <apex:form >
+        
+        <apex:actionFunction name="actionFn_Js" reRender="UserMessage">
+            <apex:param name="actionName" value="Link-ActionFunction" assignTo="{!actionName}"/>
+        </apex:actionFunction>
+        
+        <apex:panelGrid columns="2">
+    
+                <!-- commandbutton -->
+            	<apex:outputText value="CommandButton"/>
+                <apex:commandButton value="Click me" reRender="UserMessage">
+                    <apex:param name="actionName" value="CommandButton" assignTo="{!actionName}"/>
+                </apex:commandButton>
+                
+                <!-- commandlink -->
+            	<apex:outputText value="CommandLink"/>
+                <apex:commandLink value="Click me" reRender="UserMessage">
+                    <apex:param name="actionName" value="CommandLink" assignTo="{!actionName}"/>
+                </apex:commandLink>    
+                
+                <!-- actionsupport -->
+            	<apex:outputText value="ActionSupport"/>
+                <apex:selectList size="1">
+                    <apex:actionSupport event="onchange" reRender="UserMessage" >
+                        <apex:param name="actionName" value="SelectList-ActionSupport" assignTo="{!actionName}"/>
+                    </apex:actionSupport>            
+                    <apex:selectOption itemValue="Option1" itemLabel="Option1" />
+                    <apex:selectOption itemValue="Option2" itemLabel="Option2" />
+                </apex:selectList>    
+                
+                <!-- actionfunction -->
+				<apex:outputText value="ActionFunction"/>            	
+                <apex:outputLink onclick="actionFn_Js('Link-ActionFunction');return false;">
+                    Click me
+                </apex:outputLink>
+                
+                <!-- User Output Message -->
+            	<apex:outputPanel id="UserMessage">
+                    <apex:outputText value="User Message" rendered="{!actionName != Null}"/>
+                    <apex:outputText rendered="{!actionName != Null}">
+                        User clicked this action - {!actionName}
+                    </apex:outputText>
+                </apex:outputPanel>    
+            
+            </apex:panelGrid>
+    
+    </apex:form>
+</apex:page>

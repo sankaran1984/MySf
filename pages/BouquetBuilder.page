@@ -1,0 +1,170 @@
+<apex:page standardController="Bouquet__c" extensions="BouquetBuilderExtn">
+
+    <style>
+        .DetailsHeader {
+            color : black;
+        }
+        .RequiredInfoSection {
+            float : right;
+        }
+        .RequiredMark {
+            display : inline-block;
+            background-color : #c00;
+            height : 10px;
+            width : 3px;
+            margin-right : 5px;
+        }
+        .TextBox textarea {
+            width: 75%;
+        }
+        .Loader {
+            color : green;
+            font-weight : bold;
+            padding-left : 10px;
+        }
+    </style>
+    
+    <apex:form >
+    
+        <!-- Variables -->
+        <apex:variable var="isNewBouquet" value="{!bqtRecord.Id==Null}"/>
+        <apex:variable var="ObjectLabel" value="{!$ObjectType.Bouquet__c.Label}"/>
+    
+        <!-- Page TitleBar -->
+        <apex:sectionHeader title="{!ObjectLabel} Edit" subtitle="{!IF(isNewBouquet, 'New '&ObjectLabel, bqtRecord.Name)}"/>
+    
+        <!-- Page Section -->
+        <apex:pageBlock title="{!ObjectLabel} Information">
+        
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>    
+               
+            <!-- Bouquet Fields Edit Section - 1 -->   
+            <apex:pageBlockSection collapsible="false" showHeader="true">
+                <apex:facet name="header">
+                    <apex:outputPanel layout="block" styleClass="DetailsHeader">
+                        <apex:outputPanel > 
+                            {!ObjectLabel} Details 
+                        </apex:outputPanel>
+                        <apex:outputPanel styleClass="RequiredInfoSection">
+                             <apex:outputPanel styleClass="RequiredMark"/>
+                             <apex:outputPanel >= Required Information</apex:outputPanel>
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                </apex:facet>
+            
+                <apex:inputField value="{!bqtRecord.Customer__c}" required="true" />    
+                <apex:inputField value="{!bqtRecord.Delivery_Date__c}" required="true" />                     
+            </apex:pageBlockSection>
+            
+            <!-- Bouquet Fields Edit Section - 2 -->
+            <apex:pageBlockSection columns="1" collapsible="true" showHeader="false">
+                <apex:pageblockSectionItem dataStyleClass="TextBox">
+                    <apex:outputLabel value="{!$ObjectType.Bouquet__c.Fields.Deliver_To__c.Label}" />
+                    <apex:inputField value="{!bqtRecord.Deliver_To__c}" required="true"/>    
+                </apex:pageblockSectionItem>                
+    
+                <apex:pageblockSectionItem dataStyleClass="TextBox">
+                    <apex:outputLabel value="{!$ObjectType.Bouquet__c.Fields.Message__c.Label}" />
+                    <apex:inputField value="{!bqtRecord.Message__c}" required="true" />    
+                </apex:pageblockSectionItem>                 
+            </apex:pageBlockSection>
+            
+            <!-- Pie Chart Section -->
+            <apex:pageBlockSection id="ChartSection" collapsible="false" title="Summary" columns="2">
+            
+                <!-- Chart -->
+                <apex:chart data="{!pieData.lsPieWdgs}" height="50%" width="80%" rendered="{!pieData.lsPieWdgs.size!=0}">
+                    <apex:pieSeries dataField="percent" labelField="label" highlight="true"/>
+                </apex:chart>
+                <apex:pageMessage summary="No Flowers have been added to this {!ObjectLabel}" rendered="{!pieData.lsPieWdgs.size==0}"
+                    Severity="info" strength="0" />
+                    
+                <!-- Total  Cost -->
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Total Cost"/>
+                    <apex:outputText value="{!pieData.currencySymbol}{0, Number,0.00}">
+                        <apex:param value="{!pieData.totalCost}"/>
+                    </apex:outputText>
+                </apex:pageBlockSectionItem>    
+            </apex:pageBlockSection>
+              
+            <!-- Flower List Section --> 
+            <apex:pageBlockSection id="FlowerListSection" title="Flowers" collapsible="false" columns="1">
+            
+                <!-- Flower Family Select Option -->
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.Product2.Fields.Family.Label}"/>
+                    <apex:outputPanel layout="none">
+                        <apex:selectList value="{!selectedFamily}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!FlowerFamilies}"/>
+                            <apex:actionSupport event="onchange" action="{!onFilterChange}" status="TableLoadStatus" 
+                                reRender="ChartSection,FlowerListSection"/>
+                        </apex:selectList>
+                        <apex:actionStatus startText="Loading" startStyleClass="Loader" id="TableLoadStatus"/>
+                    </apex:outputPanel>                 
+                </apex:pageBlockSectionItem>
+                
+                <!-- Flower Family Table -->
+                <apex:pageBlockTable value="{!prodSetCtrlr.Records}" var="rec">
+                
+                    <!-- Quantity -->
+                    <apex:column headerValue="{!$ObjectType.Bloom__c.Fields.Quantity__c.Label}">
+                        <apex:inputField value="{!mapProdToBloom[rec['Id']].Quantity__c}" required="true"/>
+                    </apex:column>
+                    
+                    <!-- Product Name -->
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Name.Label}">
+                        <apex:outputLink value="{!URLFOR($Action.Product2.View, rec.Id)}" target="_blank">
+                            {!rec['Name']}
+                        </apex:outputLink>
+                    </apex:column>
+                    
+                    <!-- Color -->
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Color__c.Label}" 
+                            style="background-color:{!rec['HTML_Color_Code__c']};">
+                        <apex:outputLabel value="{!rec['Color__c']}"/>
+                    </apex:column>
+                    
+                    <!-- Flower Family -->
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Family.Label}">
+                        {!rec['Family']}
+                    </apex:column>
+                    
+                    <!-- Cost -->
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Cost__c.Label}">
+                        <apex:outputText value="{!pieData.currencySymbol}{0,Number,0.00}">
+                            <apex:param value="{!rec['Cost__c']}"></apex:param>
+                        </apex:outputText>
+                    </apex:column>                    
+                    
+                    <!-- Inventry Remaining -->
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.Inventory_Remaining__c.Label}">
+                        {!rec['Inventory_Remaining__c']}
+                    </apex:column>
+                                        
+                    <!-- Active -->
+                    <apex:column headerValue="{!$ObjectType.Product2.Fields.IsActive.Label}">
+                        <apex:outputField value="{!rec['IsActive']}"/>
+                    </apex:column>                    
+                    
+                </apex:pageBlockTable>
+                
+                <!-- Navigation Buttons -->
+                <apex:pageBlockSectionItem dataStyle="padding-left:35%;" >              
+                    <apex:panelGrid columns="5" cellpadding="5px" >                                     
+                        <apex:commandButton value="|< First" action="{!save}" disabled="{!prodSetCtrlr.PageNumber == 1}"/>
+                        <apex:commandButton value="Previous" action="{!save}" disabled="{!prodSetCtrlr.PageNumber == 1}"/>
+                        <apex:outputText value="Page {!prodSetCtrlr.PageNumber} of {!LastPageNumber}"/>
+                        <apex:commandButton value="Next" action="{!save}" disabled="{!prodSetCtrlr.PageNumber == LastPageNumber}"/>
+                        <apex:commandButton value="Last >|" action="{!save}" disabled="{!prodSetCtrlr.PageNumber == LastPageNumber}"/>                   
+                    </apex:panelGrid>
+                </apex:pageBlockSectionItem>
+                                
+            </apex:pageBlockSection>               
+            
+        </apex:pageBlock>    
+    </apex:form>
+</apex:page>

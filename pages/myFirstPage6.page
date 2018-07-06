@@ -1,0 +1,5 @@
+<apex:page showheader="false" sidebar="false">  
+
+    My Lightning component will be displayed here    
+
+</apex:page>

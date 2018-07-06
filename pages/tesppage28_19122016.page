@@ -1,0 +1,12 @@
+<apex:page standardController="Opportunity">
+    
+    <apex:pageblock >
+        <apex:pageblocksection >
+           	<apex:outputField value="{!Opportunity.Name}"/>    
+            <apex:outputField value="{!Opportunity.IsClosed}"/>
+            <apex:pageblocksectionItem />
+            <apex:outputField value="{!Opportunity.CloseDate}"/>
+        </apex:pageblocksection>
+    </apex:pageblock>
+    
+</apex:page>

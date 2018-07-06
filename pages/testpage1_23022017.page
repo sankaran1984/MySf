@@ -1,0 +1,32 @@
+<apex:page controller="testclass1_23022017">
+    
+    <apex:sectionHeader title="Global Search Box"/>
+    
+    <apex:form >
+        <apex:outputLabel value="Enter you search text here "/>
+        <apex:inputText value="{!searchStr}"/>
+        <apex:commandButton value="Go" action="{!startSearch}" rerender="DisplayArea"/>
+    </apex:form>
+    
+    <apex:outputPanel id="DisplayArea">
+        <apex:outputPanel rendered="{!results != Null}">
+            <apex:pageBlock >
+                
+                <!-- For each Object, like Account, Opportunity, Product2 -->
+                <apex:repeat value="{!results}" var="objName">
+                    <apex:sectionHeader subtitle="{!objName}"/>
+                    
+                    <!-- For each row -->
+                    <apex:pageBlockTable value="{!results[objName]}" var="rec" >
+                        
+                        <!-- For each field -->
+                        <apex:repeat value="{!rec}" var="field">
+                            <apex:column value="{!rec[field]}" headerValue="{!field}"/>
+                        </apex:repeat>
+                    </apex:pageBlockTable>
+                </apex:repeat>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:outputPanel>
+    
+</apex:page>

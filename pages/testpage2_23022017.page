@@ -1,0 +1,32 @@
+<apex:page standardController="Opportunity" recordSetVar="Opps">
+    
+    <style>
+        .ReqHelpText {
+            display : inline-block;
+            width : 3px;
+            background-color : #c00;
+        }
+    </style>    
+    
+    <apex:sectionHeader title="Opportunities"/>
+    
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!Opps}" var="opp">
+            <apex:column >
+                <apex:inputField value="{!Opp.Name}"/>
+                <apex:facet name="header">
+                    <apex:outputPanel >
+                        <apex:outputText value="Opportunity Name - "/>
+                        <apex:outputText value="&nbsp;" escape="false" styleClass="ReqHelpText"/>
+                        <apex:outputText value=" It is a Required Field"/>
+                    </apex:outputPanel>    
+                </apex:facet>
+            </apex:column>
+            <apex:column value="{!Opp.StageName}"/>
+            <apex:column value="{!Opp.IsClosed}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    </apex:form>    
+    
+</apex:page>

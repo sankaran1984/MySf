@@ -1,0 +1,34 @@
+<apex:page controller="RemoteController">
+    <apex:form >
+        <apex:inputText id="searchBox"/>
+        <input type="Button" value="Search" onclick="callApexFunction(document.getElementById('{!$Component.searchBox}').value);"/>
+    </apex:form>   
+    <script>
+    function callApexFunction(searchText){
+        Visualforce.remoting.Manager.invokeAction("{!$RemoteAction.RemoteController.searchRecords}",
+                                                  searchText, function(result, event){
+                                                      if(event.status)
+                                                          console.log("Success Returned");
+                                                      else
+                                                          console.log("Failed response-"+event.type);
+                                                  });
+        Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.RemoteController.getSearchRecords}',
+                                                  searchText,
+                                                  function(result, event){
+                                                  	if(event.status)
+                                                        console.log("success response - id-"+result[0].Id+" Name-"+result[0].Name+' records- '+result[0]);
+                                                    else
+                                                        console.log("failed response");
+                                                  }
+        );
+    }
+    </script>
+    <apex:outputPanel id="outputBox">
+        <apex:outputText >{!lsGlobMerRecs}</apex:outputText>
+        <apex:dataTable value="{!lsGlobMerRecs}" var="rec">
+            <apex:column headerValue="Id" value="{!rec.id}"></apex:column>
+            <apex:column headerValue="Name" value="{!rec.name}"></apex:column>
+            <apex:column headerValue="Price" value="{!rec.Price__c}"></apex:column>
+        </apex:dataTable>
+    </apex:outputPanel>
+</apex:page>

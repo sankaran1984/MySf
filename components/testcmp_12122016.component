@@ -1,0 +1,11 @@
+<apex:component >
+    <apex:attribute type="Account" name="record" description="The account record"/>
+    <apex:attribute type="ApexPages.Action" name="saveAction" description="Custom Save Action provided by client"/>
+    
+    <apex:form >
+        <apex:outputLabel value="Enter you name here"/>
+        <apex:inputField value="{!record.Name}"/>
+        
+        <apex:commandButton value="save" action="{!saveAction}"/>
+    </apex:form>
+</apex:component>

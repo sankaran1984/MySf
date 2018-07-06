@@ -1,0 +1,31 @@
+<apex:page standardController="Opportunity">
+    
+    <apex:sectionHeader title="Application - Basic Information"/>
+    <apex:outputLabel value="Name - "/>
+    <apex:outputField value="{!Opportunity.Name}"/>
+    
+    <apex:form >
+        
+        <!-- Check Box -->
+        <apex:outputLabel value="Do you want to edit ?"/>
+        <apex:inputCheckbox value="{!Opportunity.isClosed}">
+            <apex:actionSupport event="onchange" rerender="EditSection"/>
+        </apex:inputCheckbox>
+        
+        <!-- Edit Section -->
+        <apex:outputPanel id="EditSection">
+            <apex:outputPanel layout="none" rendered="{!Opportunity.isClosed}">
+                <apex:sectionHeader title="Edit Section"/>
+                
+                <apex:pageBlock >
+                    <apex:pageBlockSection >
+                    	<apex:inputField value="{!Opportunity.Description}"/>
+                        <apex:inputField value="{!Opportunity.CloseDate}"/>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>   
+            </apex:outputPanel>    
+        </apex:outputPanel>    
+        
+    </apex:form>
+    
+</apex:page>

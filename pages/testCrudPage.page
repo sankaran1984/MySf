@@ -1,0 +1,8 @@
+<apex:page controller="testable">
+    <apex:form >
+        <apex:repeat value="{!lsMers}" var="m">
+            <apex:inputField value="{!m.islaptop__c}"/>
+            isLaptop : <apex:inputText value="{!m.islaptop__c}"/>
+        </apex:repeat>
+    </apex:form>
+</apex:page>

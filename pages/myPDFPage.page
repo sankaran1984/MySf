@@ -1,0 +1,41 @@
+<apex:page controller="myPDFPage_Ctrl" showHeader="false" action="{!initPDFData}" renderAs="pdf">
+    <html>
+        <head>
+            <style type="text/css">
+                @page { size:A4; margin:5%;}
+                .imageHeader {text-align:right;}
+                .detailTable {width:75%; margin-left:auto; margin-right:auto;}
+                .productTable {width:90%; margin-left:auto; margin-right:auto;}
+            </style>
+        </head>
+        <body>
+            <div class="imageHeader">
+               <apex:image value="{!$Resource.HavenLogo}" height="200px" width="400px"></apex:image>
+            </div>
+            
+            <table class="detailTable">
+                <tr><th>Account Name</th><td>{!opp.Account.Name}</td></tr>
+                <tr><th>Opportunity Name</th><td>{!opp.Name}</td></tr>    
+                <tr><th>Opportunity Type</th><td>{!opp.Type}</td></tr>
+                <tr><th>Stage Name</th><td>{!opp.stagename}</td></tr>
+                <tr><th>Order Number</th><td>{!opp.OrderNumber__c}</td></tr>
+                <tr><th>Test</th><td>{!'☐'}</td></tr>
+            </table>
+            
+            <br/><br/><br/>
+            
+            <table class="productTable">
+                <tr><th>Product Name</th><th>Quantity</th><th>Unit Price</th><th>List Price</th><th>Service Date</th></tr>
+                <apex:repeat value="{!opp.OpportunityLineItems}" var="oli">
+                    <tr>
+                        <td>{!oli.Name}</td>
+                        <td>{!oli.Quantity}</td>
+                        <td>{!oli.UnitPrice}</td>
+                        <td>{!oli.ListPrice}</td>
+                        <td>{!oli.ServiceDate}</td>
+                    </tr>
+                </apex:repeat>
+            </table>   
+        </body>   
+    </html>
+</apex:page>

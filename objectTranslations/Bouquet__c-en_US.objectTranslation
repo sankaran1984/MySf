@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Bouquet</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Bouquets</value>
+    </caseValues>
+    <fields>
+        <label><!-- Customer --></label>
+        <name>Customer__c</name>
+        <relationshipLabel><!-- Bouquets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Deliver To --></label>
+        <name>Deliver_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Delivery Date --></label>
+        <name>Delivery_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message --></label>
+        <name>Message__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

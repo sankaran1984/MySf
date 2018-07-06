@@ -1,0 +1,38 @@
+<apex:page >
+    
+    <apex:sectionHeader title="Opportunities - Fetched through REST API"/>
+    
+    <!-- REST API -->
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.ForceTK)}"/>
+    
+    <!-- Output -->
+    <apex:outputPanel layout="block" id="OutputArea"/>
+    
+    <script>
+            
+    	window.onload = function() {
+            var client = new forcetk.Client();
+            client.setSessionToken('{!$Api.Session_ID}');
+    
+            client.query("SELECT Id, Name, IsClosed FROM Opportunity LIMIT 10", 
+                function(result) {
+                    if (result.records) {
+                        result.records.forEach(function(rec) {
+                            var div = document.getElementById('{!$Component.OutputArea}');
+                            var newDiv = document.createElement('div');
+                            var newContent = document.createTextNode(
+                                ' Id - ' + rec['Id'] + 
+                                ' Name - ' + rec['Name'] + 
+                                ' IsClosed - ' + rec['IsClosed']);
+                            newDiv.appendChild(newContent);
+                            div.appendChild(newDiv);
+                        });
+                    } else {
+                        alert('Error - ' + result);
+                    }  
+            	}
+			);
+        }
+    </script>
+</apex:page>

@@ -1,0 +1,5 @@
+<apex:page >
+    <apex:pagemessages />
+    <apex:variable value="\\" var="f"/>
+    {!URLFOR($Page.mytestsanpage1)}
+</apex:page>

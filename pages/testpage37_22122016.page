@@ -1,0 +1,26 @@
+<apex:page controller="testcls37_22122016">
+    
+    <style>
+        .StartLoader {
+        	width : 50%;
+        	height : 50%;
+        }
+    </style>
+
+	<!-- Action Status'es-->
+    <apex:sectionHeader title="Loader Status message"/>
+    <apex:actionStatus id="GraphicStatus" startStyleClass="StartLoader"
+                       startText="Request Sent.. " stopText="Response Received... ">
+        <apex:facet name="start">
+            <apex:image url="https://bestanimations.com/Science/Gears/loadinggears/loading-gears-animation-3.gif"/>
+        </apex:facet>
+		<apex:facet name="stop">
+            <apex:image url="https://www.robeol.com/skin/frontend/base/default/images/creditcard/success.png"/>
+        </apex:facet>        
+    </apex:actionStatus>
+                       
+    <apex:form >
+        <apex:actionPoller interval="5" action="{!spendSomeTime}" status="GraphicStatus"/>
+    </apex:form>    
+    
+</apex:page>

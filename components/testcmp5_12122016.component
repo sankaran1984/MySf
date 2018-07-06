@@ -1,0 +1,9 @@
+<apex:component >
+    
+    <apex:attribute type="string" name="var" description="variable name"/>
+    
+    <!-- Dynamic variable Name -->
+    <apex:variable var="{!var}" value="This is dummy value"/>
+    <apex:componentBody />
+    
+</apex:component>

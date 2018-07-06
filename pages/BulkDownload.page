@@ -1,0 +1,19 @@
+<apex:page standardController="Merchandise__c" recordsetVar="records" contentType="{!IF($CurrentPage.Parameters.Format==Null, 'text/csv', 'html')}" extensions="BulkDownloadCtrlr" sidebar="false" applybodytag="false" applyhtmltag="false" showheader="false">
+
+<!-- HTML Output-->
+<apex:ListViews type="Merchandise__c" rendered="{!$CurrentPage.Parameters.Format=='html'}"/>
+
+<!-- CSV Output -->
+<apex:outputPanel layout="none" rendered="{!$CurrentPage.Parameters.Format==Null}">
+    <apex:param name="filter" assignTo="{!FilterId}" value="{!ListViewOptions[0].value}"/>
+    
+    <!-- Header -->
+    <apex:repeat value="{!fieldNames}" var="f">{!f},</apex:repeat>{!newLine}
+    
+    <!-- Body -->
+    <apex:repeat value="{!records}" var="r">
+        <apex:repeat value="{!fieldNames}" var="fname">{!r[fieldNamesMap[fname]]},</apex:repeat>{!newLine}
+    </apex:repeat>
+</apex:outputPanel>
+    
+</apex:page>

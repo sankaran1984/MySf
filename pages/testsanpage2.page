@@ -1,0 +1,26 @@
+<apex:page controller="Testing">
+    <apex:includeScript value="https://code.jquery.com/jquery-1.11.3.min.js"/>
+    <apex:includeScript value="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"/>
+    <apex:stylesheet value="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <apex:includeScript value="{!URLFOR($Resource.jQuery_Res, 'jquery.multiselect.js')}"/>
+    <apex:form >
+        <apex:pageBlock rendered="{!$CurrentPage.Parameters.viewas==Null}">
+            <apex:commandButton value="Refresh" action="{!refresh}" />
+            <apex:commandLink value="Click Here" action="{!redirect}" target="_blank"  />
+            <apex:pageblocktable value="{!lsOpps}" var="o" >
+                <apex:column value="{!o.Id}"/>
+                <apex:column value="{!o.Name}"/>
+                <apex:column value="{!o.StageName}"/>
+            </apex:pageblocktable>
+        </apex:pageBlock>
+        <apex:repeat value="{!lsOpps}" var="o" rendered="{!$CurrentPage.Parameters.viewas=='csv'}">
+            {!o.Id}, {!o.Name}, {!o.StageName}
+        </apex:repeat>
+    </apex:form>
+    <script>
+    	j$ = jQuery.noConflict();
+    	j$(function(){
+            j$(".selBox").multiselect();
+        });
+    </script>
+</apex:page>

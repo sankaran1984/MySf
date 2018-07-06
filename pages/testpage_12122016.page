@@ -1,0 +1,12 @@
+<apex:page controller="testcls_12122016">
+    
+    <c:setParameter paramname="{!color}" paramvalue="red"/>
+    <c:setParameter paramname="{!rank}" paramvalue="5"/>
+    
+    <!-- Output Message -->
+    <apex:sectionHeader title="New Property Values"/>
+    <apex:outputText value="New Color Property value - {!color}"/>
+    <br/>
+    <apex:outputText value="New Rank Property value - {!rank}"/>
+    
+</apex:page>

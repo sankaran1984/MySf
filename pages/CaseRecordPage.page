@@ -1,0 +1,6 @@
+<apex:page standardController="Case">
+    
+    <!-- Mass Attach Component -->
+    <c:MassAttach parentRecord="{!Case.Id}" ObjectName="Case" parentRecordName="{!Case.CaseNumber}"/>
+    
+</apex:page>

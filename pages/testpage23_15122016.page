@@ -1,0 +1,26 @@
+<apex:page controller="testcls_15122016">
+    
+    <apex:form >
+    	
+        <!-- Button -->
+        <apex:commandButton value="Find Todays Day is ODD or EVEN" action="{!actionForButton}" reRender="ActionCall">
+            <apex:param name="nextAction" value="messageForEvenOrOdd" assignTo="{!nextActionName}"/>
+        </apex:commandButton>
+        
+        <!-- Action Function (which will be called after button action) -->
+        <apex:outputPanel id="ActionCall">
+            <apex:outputPanel layout="none" rendered="{!nextActionName == 'messageForEvenOrOdd'}">
+                <apex:actionFunction name="findDayEvenOrOdd_JS" action="{!messageForEvenOrOdd}"
+                                     rerender="UserMessage"/>
+                <script>
+                    findDayEvenOrOdd_JS();
+                </script>
+            </apex:outputPanel>               
+		</apex:outputPanel>            
+        
+    </apex:form>
+    
+    <!-- User Message -->
+    <apex:outputText value="{!message}" id="UserMessage"/>    
+    
+</apex:page>

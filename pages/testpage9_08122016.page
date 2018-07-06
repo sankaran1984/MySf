@@ -1,0 +1,19 @@
+<apex:page controller="testcls9_08122016">
+    
+    <apex:form >
+        <apex:inputText value="{!pageName}" html-placeholder="Enter page name to check access"/>
+        <apex:commandButton value="check" rerender="MessageArea"/>
+        
+        <apex:outputPanel id="MessageArea">
+            <apex:outputPanel layout="block" rendered="{!HasAccess}">
+                Yes, Page {!pageName} has access
+            </apex:outputPanel>
+    
+            <apex:outputPanel layout="block" rendered="{!!HasAccess}">
+                Sorry, You don't have Page {!pageName} access
+            </apex:outputPanel>        
+		</apex:outputPanel>            
+        
+    </apex:form>
+    
+</apex:page>

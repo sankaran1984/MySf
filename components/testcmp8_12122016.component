@@ -1,0 +1,5 @@
+<apex:component >
+    <apex:attribute type="MyDateContainer" name="myDate" description="Date container"/>
+    
+    <apex:outputText value="Todays date is {!myDate.myDate}" style="font-size:25px;"/> <br/>
+</apex:component>

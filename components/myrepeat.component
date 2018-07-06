@@ -1,0 +1,6 @@
+<apex:component controller="myrepeatController">
+    <apex:attribute name="repeat" type="Integer" description="count variable" assignTo="{!repeatCount}"/>
+    <apex:repeat value="{!lsRepeatCount}" var="i">
+    	<apex:componentbody ></apex:componentbody>
+    </apex:repeat>
+</apex:component>

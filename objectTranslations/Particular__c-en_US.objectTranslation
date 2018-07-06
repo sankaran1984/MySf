@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Particular</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Particulars</value>
+    </caseValues>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+        <relationshipLabel><!-- Particulars --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Enter number of items wanted --></help>
+        <label><!-- Quantity --></label>
+        <name>Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stock --></label>
+        <name>Stock__c</name>
+        <relationshipLabel><!-- Particulars --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total Price --></label>
+        <name>Total_Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unit Price --></label>
+        <name>Unit_Price__c</name>
+    </fields>
+    <layouts>
+        <layout>Particular Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- The quantiyt cannont be zero OR more than in stock --></errorMessage>
+        <name>Check_Quantity</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,5 @@
+<apex:page >
+    <apex:include pageName="myTestIncludePage"></apex:include>
+    <apex:outputText >This is parent page content</apex:outputText>
+    <apex:include pageName="myTestIncludePage"></apex:include>
+</apex:page>

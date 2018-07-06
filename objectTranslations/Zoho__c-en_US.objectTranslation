@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Zoho</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Zoho</value>
+    </caseValues>
+    <fields>
+        <help><!-- Zoho AuthToken --></help>
+        <label><!-- Zoho AuthToken --></label>
+        <name>Zoho_AuthToken__c</name>
+    </fields>
+    <fields>
+        <help><!-- Zoho CRM Url --></help>
+        <label><!-- Zoho CRM Url --></label>
+        <name>Zoho_CRM_Url__c</name>
+    </fields>
+    <fields>
+        <help><!-- log success in Zoho Log Object --></help>
+        <label><!-- log success --></label>
+        <name>log_success__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

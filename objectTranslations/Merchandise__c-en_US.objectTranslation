@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Merchandise</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Merchandise</value>
+    </caseValues>
+    <fields>
+        <label><!-- Catagories --></label>
+        <name>Catagories__c</name>
+        <picklistValues>
+            <masterLabel>Battery</masterLabel>
+            <translation><!-- Battery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charger</masterLabel>
+            <translation><!-- Charger --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Invoice --></label>
+        <name>Invoice__c</name>
+        <relationshipLabel><!-- Merchandise --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Price --></label>
+        <name>Price__c</name>
+    </fields>
+    <fields>
+        <label><!-- Purchase Date --></label>
+        <name>Purchase_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Quantity --></label>
+        <name>Quantity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Type 1</masterLabel>
+            <translation><!-- Type 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Type 2</masterLabel>
+            <translation><!-- Type 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Type 3</masterLabel>
+            <translation><!-- Type 3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Value1 --></label>
+        <name>Value1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Value2 --></label>
+        <name>Value2__c</name>
+    </fields>
+    <fields>
+        <label><!-- islaptop --></label>
+        <name>islaptop__c</name>
+    </fields>
+    <fields>
+        <label><!-- testloc --></label>
+        <name>testloc__c</name>
+    </fields>
+    <layouts>
+        <layout>Merchandise Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Create Item --></label>
+        <name>Create_Item</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- customActionPage --></label>
+        <name>customActionPage</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log A Note --></label>
+        <name>log_a_note</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>log_call</name>
+    </quickActions>
+    <sharingReasons>
+        <label><!-- Testing Sharing --></label>
+        <name>Testing_Sharing</name>
+    </sharingReasons>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- price cant be more than 1000 --></errorMessage>
+        <name>Price_upper_limit</name>
+    </validationRules>
+    <webLinks>
+        <label><!-- Create_Item --></label>
+        <name>Create_Item</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Export --></label>
+        <name>Export</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Self_Close --></label>
+        <name>Self_Close</name>
+    </webLinks>
+</CustomObjectTranslation>

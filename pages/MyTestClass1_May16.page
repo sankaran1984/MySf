@@ -1,0 +1,32 @@
+<apex:page controller="MyTestClass1_May16">
+    <apex:form id="myblock">
+        
+        <apex:actionRegion >
+            <table>
+                <thead>
+                    <tr><th>Is Laptop</th></tr>
+                </thead>
+                <tbody>
+                    <apex:actionFunction name="mysave_js" action="{!mysave}" rerender="myblock"/>
+                    <apex:repeat value="{!m}" var="rec">
+                            <tr><td><apex:inputField value="{!rec.islaptop__c}" onchange="mysave_js();"/></td></tr>
+                    </apex:repeat>
+                </tbody>
+            </table>
+    	</apex:actionRegion>
+        
+        <apex:actionRegion >
+            <table>
+                <thead>
+                    <tr><th>Is Laptop</th></tr>
+                </thead>
+                <tbody>
+                    <apex:actionFunction name="mysave_js" action="{!mysave}" rerender="myblock"/>
+                    <apex:repeat value="{!m}" var="rec">
+                        <tr><td><apex:inputField value="{!rec.islaptop__c}" onchange="mysave_js();"/></td></tr>
+                    </apex:repeat>
+                </tbody>
+            </table>  
+        </apex:actionRegion>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,114 @@
+<apex:page standardController="Merchandise__c" extensions="merExt1" sidebar="False">
+    <apex:tabPanel switchType="ajax" selectedTab="firsttab">
+        <apex:tab label="Merchandise Record" name="Mer">
+            <apex:detail inlineEdit="true" relatedList="false"></apex:detail>
+        </apex:tab>
+        <apex:tab label="MI1" name="MI1">
+            <apex:relatedList list="MerchandiseItems__r"></apex:relatedList>
+        </apex:tab>
+        <apex:tab label="Form Input">
+            <apex:form >
+                <apex:pageblock > 
+                    <apex:pageBlockSection > 
+                        <apex:inputText value="{!Merchandise__c.Price__c}" tabIndex="2"/>
+                        <apex:inputText value="{!Merchandise__c.invoice__r}" tabIndex="1"/>
+                    </apex:pageBlockSection>
+                    <apex:pageBlockButtons >
+                        <apex:commandButton value="save" action="{!save}" /></apex:pageBlockButtons>
+                </apex:pageblock>
+            </apex:form>
+        </apex:tab>   
+        <apex:tab label="datatable(stdCtrlr)">
+            <apex:form >
+                <apex:commandlink rerender="stdctrlrDataTable">click.. refresh</apex:commandlink>
+            </apex:form>
+            <apex:form >
+                <apex:datatable value="{!MerWithIndex}" var="mer" id="stdctrlrDataTable">
+                    <apex:column ><apex:facet name="header">Merchandise Id</apex:facet><apex:outputField value="{!mer.m.Id}"/></apex:column>
+                    <apex:column ><apex:facet name="header">Merchandise Name</apex:facet><apex:outputField value="{!mer.m.Name}"><apex:inlineEditSupport event="ondblClick" showOnEdit="saveButton, cancelButton"/></apex:outputField></apex:column>
+                    <apex:column ><apex:facet name="header">Merchandise Price</apex:facet><apex:outputField value="{!mer.m.Price__c}"/></apex:column>
+                </apex:datatable>
+            </apex:form>    
+        </apex:tab>
+        <apex:tab label="datatable(stdListCtrlr)">
+            <apex:dataTable value="{!merobjs}" var="m1">
+                <apex:column value="{!m1.Id}"/>
+            </apex:dataTable>
+        </apex:tab>
+        <apex:tab label="Field Dependency">
+            <apex:form >
+                <apex:pageblock >
+                    <apex:pageBlockSection >
+                        <apex:inputfield value="{!Merchandise__c.islaptop__c}"></apex:inputfield>
+                        <apex:inputfield value="{!Merchandise__c.Catagories__c}"></apex:inputfield>
+                    </apex:pageBlockSection>
+                </apex:pageblock>
+            </apex:form>
+        </apex:tab>
+        <apex:tab label="PanelGrid">
+            <apex:panelgrid columns="2">
+                <apex:outputField value="{!Merchandise__c.Price__c}"/>
+                <apex:form >        
+                    <apex:inputfield value="{!Merchandise__c.Price__c}"></apex:inputfield>
+                </apex:form>
+            </apex:panelgrid>
+        </apex:tab>
+        <apex:tab label="PageblockTable" >
+            <apex:form >
+                <apex:pageblock >
+                    <apex:pageblocktable value="{!MerWithIndex}" var="mer2">
+                        <apex:column headerValue="Name"><apex:outputField value="{!mer2.m.name}"><apex:inlineEditSupport event="ondblClick"/></apex:outputField></apex:column>
+                        <apex:column headerValue="Price" value="{!mer2.m.Price__c}"></apex:column>
+                    </apex:pageblocktable>
+                </apex:pageblock>
+            </apex:form>
+        </apex:tab>
+        <apex:tab label="Expressions">
+            Id = {!$CurrentPage.parameters.id}<br/>
+            cmd = {!IF($CurrentPage.parameters.cmd != "", "CMD EXISTS", "NOT EXISTS")}
+        </apex:tab>
+        <apex:tab label="Table Detail View(Page Refresh)">
+            <apex:panelgrid columns="2">
+                <apex:form >
+                    <apex:pageblock >
+                        <apex:pageblocktable value="{!MerWithIndex}" var="mer3">
+                            <apex:column headerValue="Id"> 
+                                <apex:outputlink >{!mer3.m.id}<apex:param name="lid" value="{!mer3.m.id}"></apex:param></apex:outputlink>
+                            </apex:column>
+                            <apex:column value="{!mer3.m.Name}" headerValue="Name"/>
+                        </apex:pageblocktable>
+                    </apex:pageblock>
+                </apex:form>
+                <apex:pageblock >
+                    <apex:detail relatedList="False" subject="{!$CurrentPage.parameters.lid}"/>
+                </apex:pageblock>
+            </apex:panelgrid>
+        </apex:tab>
+        <apex:tab label="Table Detail View(Async Refresh)"  name="firsttab">
+            <apex:panelgrid columns="2">
+                <apex:pageblock >
+                    <apex:form >
+                        <apex:pageblocktable value="{!MerWithIndex}" var="mer4">
+                            <apex:column headerValue="Id"> 
+                                <!--<apex:commandlink rerender="tableDetailView">{!mer4.m.id}<apex:param name="lid" value="{!mer4.m.id}"></apex:param></apex:commandlink>-->
+                                <apex:outputPanel >
+                                    {!mer4.m.id}<apex:actionsupport event="onmouseover" rerender="tableDetailView"><apex:param name="lid" value="{!mer4.m.id}"></apex:param></apex:actionsupport>
+                                </apex:outputPanel>
+                            </apex:column>
+                            <apex:column value="{!mer4.m.Name}" headerValue="Name"/>
+                        </apex:pageblocktable>
+                    </apex:form>
+                </apex:pageblock>
+                <apex:pageblock >
+                    <apex:outputPanel id="tableDetailView">
+                        <apex:actionStatus startText="Requesting..">
+                            <apex:facet name="stop">
+                                <apex:detail relatedList="False" subject="{!$CurrentPage.parameters.lid}"/>
+                            </apex:facet>
+                        </apex:actionStatus>
+                    </apex:outputPanel>
+                </apex:pageblock>
+            </apex:panelgrid>
+        </apex:tab>
+    </apex:tabPanel>
+</apex:page>

@@ -1,0 +1,29 @@
+<apex:page controller="testcls_1_08122016">
+    
+    <apex:form >
+    
+        <apex:sectionHeader title="Opportunities - Fetched through Action Methods"/>
+        
+        <!-- Action Methods -->
+        <apex:actionFunction name="myCustAction_js" action="{!myCustAction}" rerender="OutputArea"/>
+        
+        <!-- Output -->
+        <apex:outputPanel layout="block" id="OutputArea">
+            <apex:repeat value="{!lsOpp}" var="opp" rendered="{!lsOpp != Null}">
+                <apex:outputPanel layout="block">
+                    Id - {!opp.Id}
+                    Name - {!opp.Name}
+                    IsClosed - {!opp.IsClosed}
+                </apex:outputPanel>
+            </apex:repeat>
+        </apex:outputPanel>
+                
+        <script>
+            window.onload = function() {
+                myCustAction_js();
+            }
+        </script>
+        
+	</apex:form>        
+    
+</apex:page>

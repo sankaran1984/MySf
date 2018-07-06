@@ -1,0 +1,22 @@
+<apex:page standardController="Account" showHeader="false" sidebar="false">
+    
+    <!-- Print Controls -->
+    <apex:outputPanel layout="block">
+        <button id="PrintButton">Print</button>
+    </apex:outputPanel>
+    
+    <!-- Actual print page -->
+    <apex:iframe frameborder="false" src="{!$Page.AccountPrintPage}?Id={!Account.Id}" id="PrintPage"/>
+    
+    <script>
+    	window.onload = function() {
+            var pntBtn = document.getElementById('PrintButton');
+            
+            pntBtn.onclick = function() {
+                var pntPage = document.getElementById('PrintPage');
+                
+                pntPage.contentWindow.print();
+            }
+        }
+    </script>
+</apex:page>

@@ -1,0 +1,5 @@
+<apex:page controller="testcls7_08122016" action="{!init_page2}">
+    
+    <apex:outputText value="{!pagemessage}"/>
+    
+</apex:page>

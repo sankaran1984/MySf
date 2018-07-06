@@ -1,0 +1,37 @@
+<apex:page controller="CreatePaymentsCtlr" sidebar="false" showHeader="false">
+    
+    <apex:pageMessages />
+    
+    <!-- List all Orders with their payments -->
+    <apex:form rendered="{!!loadFailed}">   
+
+        <apex:outputPanel layout="block" style="text-align:center;">
+            <apex:commandButton value="Save" action="{!save}" reRender="none" oncomplete="alert('done');"/>
+            <apex:commandButton value="Close" onclick="window.close();"/> 
+		</apex:outputPanel>         
+        
+        <apex:repeat value="{!lsOrders}" var="rec">
+            <apex:pageblock title="{!rec.Name}">
+                <apex:pageBlockTable value="{!mapOrderToPays[rec.Id]}" var="payRec">
+                    <apex:column value="{!payRec.Order__c}"/>
+                    <apex:column headerValue="Payment Type">
+                        <apex:inputField value="{!payRec.Payment_Type__c}"/>
+                    </apex:column>  
+                    <apex:column headerValue="Amount">
+                        <apex:inputField value="{!payRec.Amount__c}"/>
+                    </apex:column>  
+                    <apex:column headerValue="Date">
+                        <apex:inputField value="{!payRec.Date__c}"/>
+                    </apex:column>  
+                    <apex:column headerValue="Other Payment Method">
+                        <apex:inputField value="{!payRec.Other_Payment_Method__c}"/>
+                    </apex:column>   
+                    <apex:column headerValue="Refunded">
+                        <apex:inputField value="{!payRec.Refunded__c}"/>
+                    </apex:column>                 
+                </apex:pageBlockTable>
+            </apex:pageblock>
+        </apex:repeat>
+                   
+    </apex:form>
+</apex:page>

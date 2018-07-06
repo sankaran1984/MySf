@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>External Storage</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>External Storages</value>
+    </caseValues>
+    <fields>
+        <label><!-- Access Token --></label>
+        <name>Access_Token__c</name>
+    </fields>
+    <fields>
+        <label><!-- Name --></label>
+        <name>Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refresh Token --></label>
+        <name>Refresh_Token__c</name>
+    </fields>
+    <fields>
+        <label><!-- Storage Type --></label>
+        <name>Storage_Type__c</name>
+        <picklistValues>
+            <masterLabel>Amazon Cloud Drive</masterLabel>
+            <translation><!-- Amazon Cloud Drive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Box</masterLabel>
+            <translation><!-- Box --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DropBox</masterLabel>
+            <translation><!-- DropBox --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Google Drive</masterLabel>
+            <translation><!-- Google Drive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OneDrive</masterLabel>
+            <translation><!-- OneDrive --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OwnCloud</masterLabel>
+            <translation><!-- OwnCloud --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>iCloud</masterLabel>
+            <translation><!-- iCloud --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

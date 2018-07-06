@@ -1,0 +1,27 @@
+<apex:page controller="testclass6_22022017">
+    
+    <apex:sectionHeader title="Extend the Standard Opportunity Object"/>
+    
+    <!-- Show Opportunty Standard Fields -->
+    <apex:sectionHeader subtitle="Standard Fields"/>
+    <apex:outputPanel layout="block">
+        <apex:outputLabel value="Name - "/>
+        <apex:outputText value="{!oppWrapObj.opp.Name}"/>
+    </apex:outputPanel>
+    <apex:outputPanel layout="block">
+        <apex:outputLabel value="StageName - "/>
+        <apex:outputText value="{!oppWrapObj.opp.StageName}"/>
+    </apex:outputPanel>
+    
+    <!-- Show Opportunty Extended Fields -->
+    <apex:sectionHeader subtitle="Extended Fields"/>
+    <apex:outputPanel layout="block">
+        <apex:outputLabel value="Generic Name - "/>
+        <apex:outputText value="{!oppWrapObj.genericName}"/>
+    </apex:outputPanel>
+    <apex:outputPanel layout="block">
+        <apex:outputLabel value="Open Date - "/>
+        <apex:outputText value="{!oppWrapObj.openDate}"/>
+    </apex:outputPanel>
+    
+</apex:page>

@@ -1,0 +1,36 @@
+<apex:page >
+    
+    <apex:sectionHeader title="Opportunities - Fetched through Remote Objects"/>
+    
+    <!-- Remote Objects -->
+    <apex:remoteObjects >
+        <apex:remoteObjectModel name="Opportunity" fields="Id, Name, IsClosed"/>
+    </apex:remoteObjects>
+    
+    <!-- Output -->
+    <apex:outputPanel layout="block" id="OutputArea"/>
+        
+    <script>
+    	window.onload = function() {
+            var oppModel = new SObjectModel.Opportunity();
+            console.log(oppModel);
+            
+            oppModel.retrieve({limit : 10}, function(err, records, event) {
+                if (err) {
+                    alert('Error while fetching records - ' + err);
+                } else {
+                    records.forEach(function(rec) {
+                        var div = document.getElementById('{!$Component.OutputArea}');
+                        var newDiv = document.createElement('div');
+                        var newContent = document.createTextNode(
+							' Id - ' + rec.get('Id') + 
+                            ' Name - ' + rec.get('Name') + 
+                            ' IsClosed - ' + rec.get('IsClosed'));
+                        newDiv.appendChild(newContent);
+                        div.appendChild(newDiv);
+                    });
+                }
+            });
+        }
+    </script>
+</apex:page>

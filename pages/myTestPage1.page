@@ -1,0 +1,12 @@
+<apex:page standardController="Merchandise__c" extensions="merExt1" sidebar="false" renderas="{!IF(renderaspdf, "pdf", "")}">
+    <apex:stylesheet value="{!URLFOR($Resource.myStyle)}"/>
+    <apex:outputpanel styleclass="fieldStyle"><apex:outputfield value="{!Merchandise__c.name}"/></apex:outputpanel>
+    <apex:panelbar >
+        <apex:panelBarItem label="item1">Item1</apex:panelBarItem>
+        <apex:panelBarItem label="item2">Item2</apex:panelBarItem>
+        <apex:panelBarItem label="item3">Item3</apex:panelBarItem>
+    </apex:panelbar>
+    <apex:form >     
+        <apex:commandbutton value="Show as PDF" action="{!renderNow}"></apex:commandbutton>
+    </apex:form>
+</apex:page>

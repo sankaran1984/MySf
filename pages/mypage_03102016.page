@@ -1,0 +1,7 @@
+<apex:page standardController="Merchandise__c" extensions="myclass_03102016" >
+    <apex:pageMessages />
+    <apex:form >
+        <apex:inputField value="{!Merchandise__c.Quantity__c}"/>
+        <apex:commandButton value="save" action="{!onsave}"/>
+    </apex:form>
+</apex:page>

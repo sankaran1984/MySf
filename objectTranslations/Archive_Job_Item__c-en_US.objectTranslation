@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Archive Job Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Archive Job Items</value>
+    </caseValues>
+    <fields>
+        <label><!-- Archive External Link --></label>
+        <name>Archive_External_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Last Ran DateTime --></label>
+        <name>Last_Ran_DateTime__c</name>
+    </fields>
+    <fields>
+        <label><!-- Range End Date --></label>
+        <name>Range_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Range Start Date --></label>
+        <name>Range_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Range --></label>
+        <name>Range__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status Description --></label>
+        <name>Status_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Status --></label>
+        <name>Status__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processing</masterLabel>
+            <translation><!-- Processing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Scheduled</masterLabel>
+            <translation><!-- Scheduled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Succeeded</masterLabel>
+            <translation><!-- Succeeded --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

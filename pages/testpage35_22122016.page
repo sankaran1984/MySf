@@ -1,0 +1,16 @@
+<apex:page >
+    
+    <apex:form >
+        <!-- 
+			Show Box After an Action from Button, Link, JS Action Function call, etc 
+			All you need to do is, add the Id of the dialog box in the reRender list.
+		-->
+    	<apex:commandButton value="Show DialogBox" reRender="MyDlgBox"/>
+    </apex:form>    
+    
+    <c:dialogbox value="Would you like to show Hidden Password ?" id="MyDlgBox"
+                 reRenderOnOK="MyPasswordBox"/>
+    
+    <c:alertbox value="Password is **Password1**" id="MyPasswordBox"/>
+    
+</apex:page>

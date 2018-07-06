@@ -1,0 +1,37 @@
+<apex:page >
+    
+    
+    <apex:sectionHeader title="Opportunities - Fetched through SOAP API"/>
+    
+    <!-- Soap API - Include Scripts -->
+    <apex:includeScript value="{!URLFOR('/soap/ajax/9.0/connection.js')}"/>
+    <apex:includeScript value="{!URLFOR('/soap/ajax/9.0/apex.js')}"/>
+    
+    <!-- Output -->
+    <apex:outputPanel layout="block" id="OutputArea"/>
+    
+    <script>
+    
+    	window.onload = function() {
+            sforce.connection.sessionId = '{!$Api.Session_ID}';
+        
+            sforce.apex.execute('testcls_1_08122016', 'getOpportunities_WS', {}, function(records){
+                if (records) {
+                    records.forEach(function(rec) {
+                        var div = document.getElementById('{!$Component.OutputArea}');
+                        var newDiv = document.createElement('div');
+                        var newContent = document.createTextNode(
+                            ' Id - ' + rec['Id'] + 
+                            ' Name - ' + rec['Name'] + 
+                            ' IsClosed - ' + rec['IsClosed']);
+                        newDiv.appendChild(newContent);
+                        div.appendChild(newDiv);
+                    });
+                } else {
+                    alert('Error - ' + records);
+                }            
+            });
+        }
+        
+    </script>
+</apex:page>

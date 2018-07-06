@@ -1,0 +1,6 @@
+<apex:page standardController="Merchandise__c" extensions="merExt2">
+    <apex:repeat value="{!fieldList}" var="f">
+        <apex:outputLabel >"{!Merchandise__c[f]}"</apex:outputLabel>
+        <apex:outputfield value="{!Merchandise__c[f]}"></apex:outputfield>
+    </apex:repeat>
+</apex:page>

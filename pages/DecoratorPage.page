@@ -1,0 +1,15 @@
+<apex:page controller="Decorator">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!lsOpps}" var="opp" id="myTable">
+                <apex:column headerValue="Name" value="{!opp.opp.Name}"/>
+                <apex:column headerValue="CloseDate" value="{!opp.opp.CloseDate}"/>
+                <apex:column headerValue="Type New Close Date Year">
+                    <apex:inputText value="{!opp.closeDate}">
+                        <apex:actionSupport event="onchange" reRender="myTable"/>
+                    </apex:inputText>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

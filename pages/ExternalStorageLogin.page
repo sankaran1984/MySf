@@ -1,0 +1,13 @@
+<apex:page controller="ExternalStorageLoginCtrlr">
+    <apex:form >
+        <apex:pageMessages />
+        <apex:commandButton value="Box Login" action="{!boxLogin}" rerender="none"/><br/>
+        <apex:outputPanel layout="none" rendered="{!!ISBLANK(accessToken)}">
+            <div style="font-size:16px;">
+                Access Token - {!accessToken}
+            </div><br/>
+            <apex:inputFile value="{!fileContent}"/>
+            <apex:commandButton value="Upload to Box" action="{!boxUploadFile}"/>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

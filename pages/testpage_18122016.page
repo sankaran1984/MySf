@@ -1,0 +1,22 @@
+<apex:page controller="testcls_18122016">
+    
+    <apex:form >
+        <apex:actionFunction name="getOppCount_js" action="{!getClosedOppCount}"
+                       	status="StatusMsg" reRender="UserMessage"/>
+    </apex:form>
+    
+    <!-- User Message Area -->
+    <apex:sectionHeader title="Opportunity Stats"/>
+    <apex:actionStatus startText="Getting Opportunity Count .... Please Wait ...."
+                     	id="StatusMsg"/>    
+    <apex:outputPanel id="UserMessage">
+        <apex:outputText value="Total Closed Opportunity is - {!oppCount}"
+                        rendered="{!oppCount != Null}" />
+	</apex:outputPanel>        
+    
+    <script>
+    	window.onload = function() {
+            getOppCount_js();
+        }
+    </script>
+</apex:page>

@@ -1,0 +1,20 @@
+<apex:page standardController="Opportunity">
+    What would you like to do with this Opportunity - {!Opportunity.Name}
+    
+    <apex:panelGrid columns="1">
+    
+        <!-- create -->
+        <apex:outputLink value="{!URLFOR($Action.Opportunity.New)}">Create New</apex:outputLink>    
+        
+        <!-- view -->
+        <apex:outputLink value="{!URLFOR($Action.Opportunity.View, Opportunity.Id)}">View</apex:outputLink>
+        
+        <!-- edit -->
+        <apex:outputLink value="{!URLFOR($Action.Opportunity.Edit, Opportunity.Id)}">Edit</apex:outputLink>
+    
+        <!-- delete -->
+        <apex:outputLink value="{!URLFOR($Action.Opportunity.Delete, Opportunity.Id)}">Delete</apex:outputLink>
+        
+	</apex:panelGrid>        
+    
+</apex:page>

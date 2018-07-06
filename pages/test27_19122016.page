@@ -1,0 +1,39 @@
+<apex:page standardController="Opportunity">
+    
+    <!-- mode - detail -->
+    <apex:pageblock title="Mode - detail" mode="detail">
+        <apex:pageblocksection >
+            <apex:outputField value="{!Opportunity.Name}"/>
+            <apex:pageblocksectionItem />
+            <apex:outputField value="{!Opportunity.IsClosed}"/>
+        </apex:pageblocksection>
+    </apex:pageblock>
+    
+    <!-- mode - mainDetail -->
+    <apex:pageblock title="Mode - maindetail" mode="maindetail">
+        <apex:pageblocksection >
+            <apex:outputField value="{!Opportunity.Name}"/>
+            <apex:pageblocksectionItem />
+            <apex:outputField value="{!Opportunity.IsClosed}"/>
+        </apex:pageblocksection>
+    </apex:pageblock>    
+    
+    <!-- mode - edit -->
+    <apex:pageblock title="Mode - edit" mode="edit">
+        <apex:pageblocksection >
+            <apex:outputField value="{!Opportunity.Name}"/>
+            <apex:pageblocksectionItem />
+            <apex:outputField value="{!Opportunity.IsClosed}"/>
+        </apex:pageblocksection>
+    </apex:pageblock>    
+    
+    <!-- mode - inlineEdit -->
+    <apex:pageblock title="Mode - inlineEdit" mode="inlineEdit">
+        <apex:pageblocksection >
+            <apex:outputField value="{!Opportunity.Name}"/>
+            <apex:pageblocksectionItem />
+            <apex:outputField value="{!Opportunity.IsClosed}"/>
+        </apex:pageblocksection>
+    </apex:pageblock>    
+    
+</apex:page>

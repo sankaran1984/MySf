@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Zoho Connection Configurations</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Zoho_AuthToken__c</fullName>
+        <description>Zoho AuthToken</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Zoho AuthToken</inlineHelpText>
+        <label>Zoho AuthToken</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Zoho_CRM_Url__c</fullName>
+        <description>Zoho CRM Url</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Zoho CRM Url</inlineHelpText>
+        <label>Zoho CRM Url</label>
+        <length>250</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>log_success__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>log success in Zoho Log Object</description>
+        <externalId>false</externalId>
+        <inlineHelpText>log success in Zoho Log Object</inlineHelpText>
+        <label>log success</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>Zoho</label>
+    <visibility>Protected</visibility>
+</CustomObject>

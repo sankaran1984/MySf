@@ -1,0 +1,16 @@
+<apex:page >
+    
+    <apex:form >
+        <!-- 
+			Show Box After an Action from Button, Link, JS Action Function call, etc 
+			All you need to do is, add the Id of the alert box in the reRender list.
+		-->
+    	<apex:commandButton value="Show AlertBox1" reRender="MyAlertBox1"/>
+        <apex:commandButton value="Show AlertBox2" reRender="MyAlertBox2"/>
+    </apex:form>    
+    
+    <c:alertbox value="Message1 from AlertBox1" id="MyAlertBox1"/>
+    
+    <c:alertbox value="Message2 from AlertBox2" id="MyAlertBox2"/>
+    
+</apex:page>

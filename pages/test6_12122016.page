@@ -1,0 +1,14 @@
+<apex:page controller="testcls5_12122016">
+    
+    <!-- Static variable Name -->
+    <apex:variable var="currentpage" value="{!$CurrentPage.Name}"/>
+    
+    <!-- Output to User -->
+    Current page is - {!currentpage}
+    
+    <!-- Dynamic variable Name -->
+    <c:testcmp5_12122016 var="TodaysDate">
+        Today's Date is {!TodaysDate}
+    </c:testcmp5_12122016>
+    
+</apex:page>

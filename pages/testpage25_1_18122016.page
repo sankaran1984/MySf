@@ -1,0 +1,23 @@
+<apex:page standardController="Opportunity">
+    
+    <apex:form >     
+        <apex:actionRegion >
+            
+        <!-- Excluded Region -->
+        <apex:sectionHeader title="ExcludedRegion"/>
+        <apex:outputPanel id="ExcludedRegion">
+            <apex:inputField value="{!Opportunity.CloseDate}"/>
+        </apex:outputPanel>        
+    
+		<!-- Included Region -->        
+        
+            <apex:sectionHeader title="IncludedRegion"/>
+            <apex:outputPanel id="IncludedRegion">
+				<apex:inputField value="{!Opportunity.Name}"/>		
+            </apex:outputPanel>
+            <apex:commandButton value="Save" action="{!save}"
+                                reRender="IncludedRegion, ExcludedRegion"/>
+		</apex:actionRegion>            
+    </apex:form>
+    
+</apex:page>

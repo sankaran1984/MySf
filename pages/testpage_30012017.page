@@ -1,0 +1,10 @@
+<apex:page standardController="Account">
+    New - {!URLFOR($Action.Account.New)}
+    View - {!URLFOR($Action.Account.View, Account.Id)}
+    Edit - {!URLFOR($Action.Account.Edit, Account.Id)}
+    Delete - {!URLFOR($Action.Account.Delete, Account.Id)}
+    <!--Clone - {!URLFOR($Action.Account.Clone, Account.Id)}-->
+    
+    <!--List - {!URLFOR($Action.Account.List)}-->
+    <!--Tab - {!URLFOR($Action.Account.Tab)}-->
+</apex:page>

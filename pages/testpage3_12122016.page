@@ -1,0 +1,3 @@
+<apex:page tabStyle="Account">
+    <apex:pageBlock title="TestBlock"/>
+</apex:page>

@@ -1,0 +1,29 @@
+<apex:page standardController="Opportunity" >
+    
+    <!-- $Component IN CSS -->
+    <style>
+    	#{!SUBSTITUTE($Component.PageBlock.OppName, ':', '\\:')} {
+        	font-size : 30px;
+    		color : green;
+        }
+    </style>
+    
+    <apex:pageblock title="Opportunity Detail" id="PageBlock">
+        <apex:outputLabel for="OppName" value="Opportunity Name - "/>
+        <apex:outputField value="{!Opportunity.Name}" id="OppName"/>
+    </apex:pageblock>
+    
+    <!-- $Component IN HTML -->
+    <div>
+        The Id automatically generated is {!$Component.PageBlock.OppName}
+    </div>
+    
+    <!-- $Component IN JavaScript -->
+    <script>
+    	window.onload = function() {
+            window.alert('The value of Opportunity name is - '+ 
+            	document.getElementById('{!$Component.PageBlock.OppName}').innerText);
+        }
+    </script>
+    
+</apex:page>

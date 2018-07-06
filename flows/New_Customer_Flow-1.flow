@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>Closed_Lost</name>
+        <choiceText>Closed Lost</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Closed Lost</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Closed_Won</name>
+        <choiceText>Closed Won</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Closed Won</stringValue>
+        </value>
+    </choices>
+    <formulas>
+        <name>FullName</name>
+        <dataType>String</dataType>
+        <expression>{!First_Name} + &apos; &apos; + {!Last_Name}</expression>
+    </formulas>
+    <formulas>
+        <name>onemonthlater</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate} + 30</expression>
+    </formulas>
+    <formulas>
+        <name>oppname</name>
+        <dataType>String</dataType>
+        <expression>{!Company_Name} + &apos;-&apos; + {!Last_Name}</expression>
+    </formulas>
+    <interviewLabel>New Customer Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>New Customer Flow</label>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Account</name>
+        <label>Create Account</label>
+        <locationX>65</locationX>
+        <locationY>229</locationY>
+        <assignRecordIdToReference>AccId</assignRecordIdToReference>
+        <connector>
+            <targetReference>create_contact</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>Company_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordCreates>
+    <recordCreates>
+        <name>create_contact</name>
+        <label>create contact</label>
+        <locationX>59</locationX>
+        <locationY>341</locationY>
+        <assignRecordIdToReference>conId</assignRecordIdToReference>
+        <connector>
+            <targetReference>create_opp</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>AccId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>FirstName</field>
+            <value>
+                <elementReference>First_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LastName</field>
+            <value>
+                <elementReference>Last_Name</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+    </recordCreates>
+    <recordCreates>
+        <name>create_opp</name>
+        <label>create opp</label>
+        <locationX>62</locationX>
+        <locationY>451</locationY>
+        <inputAssignments>
+            <field>AccountId</field>
+            <value>
+                <elementReference>AccId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Amount</field>
+            <value>
+                <elementReference>Opportunity_Amount</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>onemonthlater</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>oppname</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Prospecting</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Opportunity</object>
+    </recordCreates>
+    <screens>
+        <name>user_input</name>
+        <label>user input</label>
+        <locationX>175</locationX>
+        <locationY>95</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Create_Account</targetReference>
+        </connector>
+        <fields>
+            <name>First_Name</name>
+            <dataType>String</dataType>
+            <fieldText>First Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Last_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Last Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Company_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Company Name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Opportunity_Amount</name>
+            <dataType>Currency</dataType>
+            <fieldText>Opportunity Amount</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>0</scale>
+        </fields>
+        <fields>
+            <name>Opportunity_Stage</name>
+            <choiceReferences>Closed_Won</choiceReferences>
+            <choiceReferences>Closed_Lost</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Opportunity Stage</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+    </screens>
+    <startElementReference>user_input</startElementReference>
+    <variables>
+        <name>AccId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>conId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>First name + Last name</description>
+        <name>Name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

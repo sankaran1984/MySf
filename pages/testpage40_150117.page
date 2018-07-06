@@ -1,0 +1,12 @@
+<apex:page >
+    
+    <apex:sectionHeader title="Static Resource"/>
+    <apex:image value="{!URLFOR($Resource.vfimagetest, 'cats/kitten1.jpg')}"/>
+    
+    <apex:sectionHeader title="Notes and Attachments"/>
+    <apex:image value="/servlet/servlet.FileDownload?file=00Pb000000pk0sG"/>
+    
+    <apex:sectionHeader title="Documents"/>
+    <apex:image value="/servlet/servlet.FileDownload?file=015b00000046gNq"/>
+    
+</apex:page>

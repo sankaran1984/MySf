@@ -1,0 +1,3 @@
+<apex:page >
+    <apex:outputText >This is the included Page</apex:outputText>
+</apex:page>

@@ -1,0 +1,36 @@
+<apex:page controller="testcls5_06122016">
+    
+    <apex:form >
+    
+        <!-- Display Section (Output Area) -->
+        <apex:outputPanel layout="block">
+            Today's Quote - {!$Setup.TodaysQuote__c.Quote__c}
+        </apex:outputPanel> 
+        
+        <hr/><br/>
+                         
+        <!-- User Input Section (Input Area) -->
+        <apex:inputText value="{!searchStr}" html-placeholder="Type something to search in products"/>
+        <apex:commandButton value="Search" action="{!doSearch}" reRender="SearchResultArea"/>
+        <apex:outputPanel id="SearchResultArea">
+            <apex:outputText value="{!searchResult}"/>
+        </apex:outputPanel>
+        
+        <hr/><br/>
+        
+        <!-- Navigation Section (Redirection Area) -->
+        <apex:outputPanel layout="block">
+            <apex:outputText value="Menu" style="font-weight:bold;"/>
+            <apex:panelGrid columns="1">
+                <apex:outputLink value="https://www.google.com" target="_blank">
+                    Google
+                </apex:outputLink>
+                <apex:outputLink value="https://www.wikipedia.com" target="_blank">
+                    Wikipedia
+                </apex:outputLink>            
+            </apex:panelGrid>
+        </apex:outputPanel>
+        
+	</apex:form>        
+    
+</apex:page>

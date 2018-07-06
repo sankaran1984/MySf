@@ -1,0 +1,27 @@
+<apex:page Controller="testSanPage1Ctrl">
+
+    <apex:form >
+        <apex:commandButton value="Click" action="{!sendToSrv}"/>
+    <apex:pageBlock title="My Content" id="MyContent">
+        
+            <apex:inputText value="{!selInput}">
+            </apex:inputText>
+		<apex:pageBlockSection >
+            <apex:inputField value="{!c.Account__c}"/>
+        </apex:pageBlockSection>
+
+    </apex:pageBlock>
+    <apex:pageBlock id="TableSpace">
+        {!selInput}
+    </apex:pageBlock>
+        
+    <apex:outputText >
+        This is testing new 
+    </apex:outputText>
+	<apex:outputLink target="www.google.com">
+        <apex:outputText value="Click here" style="font-weight:bold;"/>
+    </apex:outputLink>
+
+    <apex:inputText value="{!c.Account__c}"/>
+        </apex:form>
+</apex:page>

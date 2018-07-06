@@ -1,0 +1,9 @@
+<apex:page standardController="Merchandise__c" recordSetVar="records">
+    <apex:pageBlock mode="inlineedit">
+        <apex:pageblocktable value="{!selected}" var="rec">
+            <apex:column headerValue="id" value="{!rec.id}"></apex:column>
+            <apex:column headerValue="name" value="{!rec.name}"></apex:column>
+        </apex:pageblocktable>  
+        <apex:actionSupport event="ondblclick" action="{!save}" />
+    </apex:pageBlock>
+</apex:page>

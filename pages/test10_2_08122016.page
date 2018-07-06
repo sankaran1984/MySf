@@ -1,0 +1,27 @@
+<apex:page controller="testcls_1_08122016">
+    
+    <apex:sectionHeader title="Opportunities - Fetched through Remote Methods "/>
+    
+    <!-- Output -->
+    <apex:outputPanel layout="block" id="OutputArea"/>
+        
+    <script>
+    	/* Remote Methods */
+    	testcls_1_08122016.getOpportunities(function(result, event) {
+            if (result) {
+                result.forEach(function(rec) {
+                    var div = document.getElementById('{!$Component.OutputArea}');
+                    var newDiv = document.createElement('div');
+                    var newContent = document.createTextNode(
+                        ' Id - ' + rec['Id'] + 
+                        ' Name - ' + rec['Name'] + 
+                        ' IsClosed - ' + rec['IsClosed']);
+                    newDiv.appendChild(newContent);
+                    div.appendChild(newDiv);
+                });
+            } else {
+                alert('Error - ' + result);
+            }
+        });
+    </script>
+</apex:page>

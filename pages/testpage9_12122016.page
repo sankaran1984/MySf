@@ -1,0 +1,19 @@
+<apex:page >
+    
+    <!-- Header -->    
+    <apex:outputPanel layout="block" style="height:50px;background-color:lightcyan;">
+        <apex:insert name="Header"/>
+    </apex:outputPanel>
+    
+    <!-- Content -->
+    <apex:outputPanel layout="block" style="height:50px;background-color:lightblue;">
+        <apex:insert name="Content"/>
+    </apex:outputPanel>
+    
+    <!-- Footer -->
+    <apex:outputPanel layout="block" style="height:50px;background-color:lightgreen;">
+        <apex:insert name="Footer"/>
+    </apex:outputPanel>        
+
+    
+</apex:page>

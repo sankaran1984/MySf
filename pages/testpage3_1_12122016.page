@@ -1,0 +1,9 @@
+<apex:page standardController="Account">
+    
+    <apex:stylesheet value="{!URLFOR($Resource.common_css)}"/>
+    
+    <apex:form >
+        <apex:outputLabel value="Enter Account Name" styleClass="TextLabel"/>
+        <apex:inputText value="{!Account.Name}" styleClass="TextInput"/>
+    </apex:form>
+</apex:page>

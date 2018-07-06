@@ -1,0 +1,27 @@
+<apex:component controller="testctrlr_21102016">
+    <apex:attribute type="Object" name="mylist" description="mylist" assignTo="{!myCompList}"/>
+    
+    <apex:repeat value="{!myCompList}" var="rec">
+        {!rec}
+    </apex:repeat>
+
+
+
+                <!--         
+
+        <apex:actionFunction name="uploadFile" action="{!uploadFile}" reRender="OutArea">
+            <apex:param name="fileBlob" value="" assignTo="{!att.Body}"/>
+        </apex:actionFunction>
+        
+
+        <label for="Upload">Upload File</label>
+        <input id="Upload" type="file" onChange="uploadFile(this.value);"/>
+
+        
+        <apex:outputPanel id="OutArea">
+            {!message}
+        </apex:outputPanel>
+		-->        
+
+
+</apex:component>

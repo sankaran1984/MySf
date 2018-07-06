@@ -1,0 +1,5 @@
+<apex:page >
+    <c:myrepeat repeat="10">
+        <apex:outputtext >This is my repeating test</apex:outputtext><br/>
+    </c:myrepeat>   
+</apex:page>

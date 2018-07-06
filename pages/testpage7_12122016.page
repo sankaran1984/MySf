@@ -1,0 +1,17 @@
+<apex:page standardController="Account" extensions="testcls7_12122016">
+    
+    <apex:form >
+    
+        <!-- Using OutputFiled - Use rendered=false -->
+        <apex:outputField value="{!Account.CreatedDate}" rendered="false"/>
+        
+        <!-- Using input hidden field -->
+        <apex:inputHidden value="{!Account.Name}"/>
+        
+    </apex:form>
+    
+    <!-- Output to User -->
+    <apex:outputText value="The Account name with Created Date - {!name_with_createddate}"
+                     style="font-size:25px;"/>
+    
+</apex:page>

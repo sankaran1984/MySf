@@ -1,0 +1,22 @@
+<apex:page docType="html-5.0">
+    
+    <apex:sectionHeader title="QR Code Generator"/>    
+    
+    <apex:form >
+        
+        <apex:outputText value="Enter the URL"/>
+        <apex:input type="text" onchange="redirect(this.value);" />
+        
+        <br/><br/>
+        
+        <apex:outputPanel layout="block" rendered="{!$CurrentPage.parameters.ImageURL != Null}">
+            <apex:image value="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={!$CurrentPage.parameters.ImageURL}"/>
+        </apex:outputPanel>
+    </apex:form>
+    
+    <script>
+    	function redirect(imageURL) {
+            window.location.href = '{!$Page.testpage2_22022017}?ImageURL=' + imageURL;
+        }
+    </script>
+</apex:page>

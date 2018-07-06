@@ -1,0 +1,7 @@
+<apex:page standardController="Merchandise__c" extensions="myExt3">
+    <apex:form >
+        <apex:inputfield value="{!Merchandise__c.Price__c}"></apex:inputfield>
+        <apex:outputLabel >Price:</apex:outputLabel>
+        <apex:commandButton action="{!save}" value="Save"/>
+    </apex:form>
+</apex:page>

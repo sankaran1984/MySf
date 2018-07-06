@@ -1,0 +1,22 @@
+<apex:component >
+    <apex:attribute type="String" name="value" description="The message to be displayed to the user"/>
+    <apex:attribute type="ApexPages.Action" name="OkAction" description="The action method which needs to be invoked when user press OK button"/>
+    <apex:attribute type="Object" name="reRenderOnOK" description="Either a comma seperated Id's list (Or) Apex list of Id's that needs to be rendered after the Ok Action"/>
+    <apex:attribute type="ApexPages.Action" name="CancelAction" description="The action method which needs to be invoked when user press OK button"/>
+    <apex:attribute type="Object" name="reRenderOnCancel" description="Either a comma seperated Id's list (Or) Apex list of Id's that needs to be rendered after the Cancel Action"/>
+    
+    <apex:form >
+        <apex:actionFunction name="OK_JS" action="{!OKAction}" reRender="{!reRenderOnOK}"/>
+        <apex:actionFunction name="Cancel_JS" action="{!CancelAction}" reRender="{!reRenderOnCancel}"/>
+	</apex:form>                         
+    
+    <script>
+    	if (document.readyState == 'complete') {
+    		if(window.confirm('{!value}')) {
+                OK_JS();
+            } else {
+                Cancel_JS();
+            }
+        }
+    </script>
+</apex:component>

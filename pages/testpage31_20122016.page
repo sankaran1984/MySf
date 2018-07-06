@@ -1,0 +1,9 @@
+<apex:page standardController="Opportunity">
+    
+    <!-- Opportunity Name in Hindi -->
+    <apex:outputPanel style="font-size:30px;">
+        <apex:outputLabel value="Opportunity Name ({!$Label.OppName}) - " for="OppName"/>
+        <apex:outputField value="{!Opportunity.Name}" id="OppName"/>
+	</apex:outputPanel>        
+    
+</apex:page>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Credit Hold --></label>
+        <name>Credit_Hold__c</name>
+    </fields>
+    <fields>
+        <label><!-- Customer Priority --></label>
+        <name>CustomerPriority__c</name>
+        <picklistValues>
+            <masterLabel>High</masterLabel>
+            <translation><!-- High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low</masterLabel>
+            <translation><!-- Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium</masterLabel>
+            <translation><!-- Medium --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Invoice Id --></label>
+        <name>Invoice_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Match Billing Address --></label>
+        <name>Match_Billing_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Locations --></label>
+        <name>NumberofLocations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Potential Value --></label>
+        <name>Potential_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA Expiration Date --></label>
+        <name>SLAExpirationDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA Serial Number --></label>
+        <name>SLASerialNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA Expired --></label>
+        <name>SLA_Expired__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA --></label>
+        <name>SLA__c</name>
+        <picklistValues>
+            <masterLabel>Bronze</masterLabel>
+            <translation><!-- Bronze --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Platinum</masterLabel>
+            <translation><!-- Platinum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TestMultiPick --></label>
+        <name>TestMultiPick__c</name>
+        <picklistValues>
+            <masterLabel>opt1</masterLabel>
+            <translation><!-- opt1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>opt2</masterLabel>
+            <translation><!-- opt2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>opt3</masterLabel>
+            <translation><!-- opt3 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Upsell Opportunity --></label>
+        <name>UpsellOpportunity__c</name>
+        <picklistValues>
+            <masterLabel>Maybe</masterLabel>
+            <translation><!-- Maybe --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- isExternal --></label>
+        <name>isExternal__c</name>
+    </fields>
+    <layouts>
+        <layout>Account (Marketing) Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Account Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label>test2</label>
+        <name>Update_Account_Information</name>
+    </quickActions>
+    <quickActions>
+        <label>test1</label>
+        <name>test</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Into Centre Record Type --></label>
+        <name>Into_Centre_Record_Type</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- testing_rec_types --></label>
+        <name>testing_rec_types</name>
+    </recordTypes>
+    <webLinks>
+        <label><!-- Billing --></label>
+        <name>Billing</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- New_Account --></label>
+        <name>New_Account</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print --></label>
+        <name>Print</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Print_Address --></label>
+        <name>Print_Address</name>
+    </webLinks>
+</CustomObjectTranslation>

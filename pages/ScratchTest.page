@@ -1,0 +1,17 @@
+<!-- Page: panelBar --> 
+
+<!-- Click on Item 1, Item 2, or Item 3 to display the content of the panel -->
+
+<apex:page >
+
+    <apex:panelBar >
+
+        <apex:panelBarItem label="Item 1">data 1</apex:panelBarItem>
+
+        <apex:panelBarItem label="Item 2">data 2</apex:panelBarItem>
+
+        <apex:panelBarItem label="Item 3">data 3</apex:panelBarItem>
+
+    </apex:panelBar>
+
+</apex:page>

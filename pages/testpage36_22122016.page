@@ -1,0 +1,16 @@
+<apex:page standardController="Opportunity" extensions="testcls36_22122016">
+    
+    <apex:form >
+        <!-- Action for a change in lookup field -->
+        <apex:sectionHeader title="Change Account to reflect in Account Details"/>
+        <apex:outputLabel value="Opportunity Name"/>
+        <apex:inputField value="{!Opportunity.AccountId}">
+            <apex:actionSupport event="onchange" action="{!changeAccount}" reRender="AccountName"/>
+        </apex:inputField>
+    </apex:form>
+    
+    <!-- Account Details -->
+    <apex:sectionHeader title="Account Details"/>
+    <apex:outputText value="Account Name is {!Opportunity.Account.Name}" id="AccountName"/>
+    
+</apex:page>

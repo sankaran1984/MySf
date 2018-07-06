@@ -1,0 +1,25 @@
+<apex:page standardController="Opportunity">
+    
+    <style>
+        .ReqHelpText {
+            display : inline-block;
+            width : 3px;
+            background-color : #c00;
+        }
+    </style>
+           
+    <apex:form >
+        <apex:pageblock >
+            <apex:pageBlockSection collapsible="false" showHeader="true" title="Opportunity Section">
+                <apex:facet name="header">
+                    <apex:outputPanel >
+                        <apex:outputPanel styleClass="ReqHelpText">&nbsp;</apex:outputPanel>
+                        <apex:outputText value="Fill Required Fields"/>
+                    </apex:outputPanel>    
+                </apex:facet>
+                
+                <apex:inputField value="{!Opportunity.Name}"/>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

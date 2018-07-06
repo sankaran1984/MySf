@@ -1,0 +1,5 @@
+<apex:page standardController="Opportunity">
+    <button onclick="top.location.href = '/{!Opportunity.Id}'">
+        Click here to refresh
+    </button>
+</apex:page>

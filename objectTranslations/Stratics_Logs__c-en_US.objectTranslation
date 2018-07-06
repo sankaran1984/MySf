@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Stratics Log</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Stratics Logs</value>
+    </caseValues>
+    <fields>
+        <help><!-- Is Success --></help>
+        <label><!-- Is Success --></label>
+        <name>Is_Success__c</name>
+    </fields>
+    <fields>
+        <help><!-- Lead --></help>
+        <label><!-- Lead --></label>
+        <name>Lead__c</name>
+        <relationshipLabel><!-- Stratics Logs --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Request Sent --></help>
+        <label><!-- Request Sent --></label>
+        <name>Request_Sent__c</name>
+    </fields>
+    <fields>
+        <help><!-- Response Message --></help>
+        <label><!-- Response Message --></label>
+        <name>Response_Message__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

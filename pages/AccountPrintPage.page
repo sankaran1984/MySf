@@ -1,0 +1,17 @@
+<apex:page standardController="Account" showHeader="false" sidebar="false" renderAs="pdf">
+    
+	<pre>
+        From
+        	{!Account.Name}
+			London
+    </pre>    
+    
+    <pre>
+        This is the sample text in the letter.
+    </pre>
+
+    <pre>
+        Thank you for your business
+    </pre>
+    
+</apex:page>

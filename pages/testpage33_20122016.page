@@ -1,0 +1,16 @@
+<apex:page standardController="Opportunity" extensions="testcls33_20122016">
+    
+    <apex:form >
+        <!-- Input Form -->
+        <apex:outputLabel value="Name "/>
+        <apex:inputText value="{!Opportunity.Name}"/>
+        <!-- Field Error - for Name -->
+        <apex:outputText value="{!errorMap['Name']}" style="color:red;"
+                         rendered="{!errorMap['Name'] != null}"/>
+        <br/>
+        
+        <!-- Button -->
+        <apex:commandButton value="Save" action="{!save}"/>
+    </apex:form>
+    
+</apex:page>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>test1</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>test1</value>
+    </caseValues>
+    <fields>
+        <help><!-- Unique Id --></help>
+        <label><!-- Unique Id --></label>
+        <name>Unique_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- active lookup --></label>
+        <name>active_lookup__c</name>
+        <relationshipLabel><!-- test1 --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- inactive lookup --></label>
+        <name>inactive_lookup__c</name>
+        <relationshipLabel><!-- test1 (inactive lookup) --></relationshipLabel>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

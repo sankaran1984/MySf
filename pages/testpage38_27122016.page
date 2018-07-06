@@ -1,0 +1,30 @@
+<apex:page standardController="Opportunity">
+    
+    <apex:form >
+        <apex:outputLabel value="Account Name"/>
+        <apex:inputText value="{!Opportunity.Account.Name}" Id="AccNameId"/> &nbsp;
+        
+        <!-- Custom Lookup for Account Record -->
+        <apex:outputLink value="javascript:void(0);" onclick="openDialog('{!$Component.AccNameId}');">
+            find
+        </apex:outputLink>
+    </apex:form>
+    
+    <script>
+    	function openDialog(fieldId) {
+            window.open('{!URLFOR($Page.myDialogPage)}' + '?accTagId=' + fieldId,
+                        'Popup',
+                        'height=500,width=800,resizable=no,left=100,top=100');
+        }
+    </script>
+    
+    <apex:outputText value="{!HTMLENCODE('<div>hai boss</div>')}" escape="false"/>
+    <apex:outputText value="<div>hai boss</div>" escape="false"/>
+    
+    <br/>
+    
+    <apex:outputText value="{!HTMLENCODE('<div>hai boss</div>')}"/>
+    <apex:outputText value="<div>hai boss</div>"/>
+    
+    
+</apex:page>

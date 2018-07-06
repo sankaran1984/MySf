@@ -1,0 +1,6 @@
+<apex:page standardController="Opportunity">
+    
+    <!-- One Liner for creating the standard detail page -->
+    <apex:detail relatedList="true"/>
+    
+</apex:page>

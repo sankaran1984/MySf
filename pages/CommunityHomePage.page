@@ -1,0 +1,5 @@
+<apex:page showHeader="false" sidebar="false" readOnly="true" doctype="HTML-5.0" title="CommunityHome">
+
+    <skuid:page page="myCalender"/>
+
+</apex:page>

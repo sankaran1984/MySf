@@ -1,0 +1,6 @@
+<apex:page standardController="Merchandise__c" recordSetVar="recs">
+    <apex:repeat value="{!selected}" var="s">{!s.name}</apex:repeat>
+    <apex:outputLabel >you have total {!records.size} records</apex:outputLabel>
+    <apex:outputLabel >you have used {!filterid}</apex:outputLabel> 
+    <!--<apex:outputLabel>you have selected {!selected.size} records</apex:outputLabel>-->
+</apex:page>

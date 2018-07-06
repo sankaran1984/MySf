@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <choices>
+        <name>bad</name>
+        <choiceText>bad</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>good</name>
+        <choiceText>good</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>no</name>
+        <choiceText>no</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <choices>
+        <name>yes</name>
+        <choiceText>yes</choiceText>
+        <dataType>String</dataType>
+    </choices>
+    <label>testing_flow</label>
+    <processType>Flow</processType>
+    <screens>
+        <name>Thank_you</name>
+        <label>Thank you</label>
+        <locationX>440</locationX>
+        <locationY>329</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Thankyou</name>
+            <fieldText>Thanks {!your_name} for visiting my page</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+    </screens>
+    <screens>
+        <name>welcome_screen</name>
+        <label>welcome screen</label>
+        <locationX>434</locationX>
+        <locationY>185</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Thank_you</targetReference>
+        </connector>
+        <fields>
+            <name>Aboutme</name>
+            <fieldText>My name is Sankaran. I&apos;m new to salesforce, but going to be  a expert Soon.</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>your_name</name>
+            <dataType>String</dataType>
+            <fieldText>your name</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>phonenumber</name>
+            <dataType>Number</dataType>
+            <fieldText>phone number</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>0</scale>
+        </fields>
+        <fields>
+            <name>your_donation</name>
+            <dataType>Currency</dataType>
+            <fieldText>your donation</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <scale>0</scale>
+        </fields>
+        <fields>
+            <name>like_my_service</name>
+            <dataType>Boolean</dataType>
+            <fieldText>do you like my service</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>Service_was</name>
+            <choiceReferences>good</choiceReferences>
+            <choiceReferences>bad</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Service was</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>come_again</name>
+            <choiceReferences>yes</choiceReferences>
+            <choiceReferences>no</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>come again</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+        </fields>
+    </screens>
+    <startElementReference>welcome_screen</startElementReference>
+</Flow>

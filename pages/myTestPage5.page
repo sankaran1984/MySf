@@ -1,0 +1,13 @@
+<apex:page >
+    <script>
+    function changefont(i, t){
+        if(i.checked) document.getElementById(t).style.fontWeight = "bold";
+        else document.getElementById(t).style.fontWeight = "normal";
+    }
+    </script>
+    <apex:outputLabel for="NameBoard"></apex:outputLabel>
+    <apex:outputText id="NameBoard" value="My Name is Sankaran"></apex:outputText>
+    <apex:form >
+        <apex:inputCheckbox onclick="changefont(this,'{!$Component.NameBoard}');"></apex:inputCheckbox>
+    </apex:form>
+</apex:page>

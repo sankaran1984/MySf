@@ -1,0 +1,8 @@
+<apex:page standardController="Account">
+    
+    <!-- This component take any Account record & pass a custom action to handle it. 
+		 Here, for simplicity, i have passed standard save action, but, you can pass any 
+		 action method defined in the controller/extension
+	-->
+    <c:testcmp_12122016 record="{!Account}" saveAction="{!save}"/>
+</apex:page>

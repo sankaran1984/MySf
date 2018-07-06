@@ -1,0 +1,37 @@
+<apex:page controller="testcls8_08122016">
+    
+    <style>
+        .myText {
+        	font-size: 20px;
+        	margin: 50px;
+        }
+    </style>
+    
+    <apex:form id="FullPage">
+    
+        <apex:outputPanel layout="block" rendered="{!PageName == 'Page1'}">
+            <apex:outputText value="YOU ARE IN PAGE 1" styleClass="myText"/>
+       </apex:outputPanel>
+        
+        <apex:outputPanel layout="block" rendered="{!PageName == 'Page2'}">
+            <apex:outputText value="YOU ARE IN PAGE 2" styleClass="myText"/>
+        </apex:outputPanel>
+    
+        <apex:outputPanel layout="block" rendered="{!PageName == 'Page3'}">
+            <apex:outputText value="YOU ARE IN PAGE 3" styleClass="myText"/>
+        </apex:outputPanel>
+    
+        <apex:outputPanel layout="block" rendered="{!PageName == 'Page4'}">
+            <apex:outputText value="YOU ARE IN PAGE 4" styleClass="myText"/>
+        </apex:outputPanel>    
+        
+        <apex:commandButton value="Next" rerender="FullPage">           
+            <apex:param name="PageName" value="Page{!VALUE(RIGHT(PageName, 1)) + 1}" assignTo="{!PageName}"/>
+        </apex:commandButton>
+        <apex:commandButton value="Prev" rerender="FullPage">           
+            <apex:param name="PageName" value="Page{!VALUE(RIGHT(PageName, 1)) - 1}" assignTo="{!PageName}"/>
+        </apex:commandButton>        
+    
+    </apex:form>
+    
+</apex:page>

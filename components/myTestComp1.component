@@ -1,0 +1,8 @@
+<apex:component >
+    <apex:attribute name="caption" type="string" description="title section"></apex:attribute>
+    <apex:attribute name="record" type="object" description="title section" required="true"></apex:attribute>
+    <apex:outputText value="view {!record}"></apex:outputText>
+    <!--<apex:componentbody/>-->
+    <apex:outputText value="example"></apex:outputText>
+    <apex:detail />
+</apex:component>

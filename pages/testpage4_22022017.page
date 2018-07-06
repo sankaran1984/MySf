@@ -1,0 +1,11 @@
+<apex:page >
+    
+    <apex:sectionHeader title="This page never expires in session"/>
+    
+    <apex:form >
+        <apex:outputText value="A timer running to send request to server every 5sec"/>
+        
+        <apex:actionPoller interval="5"/>
+        
+    </apex:form>
+</apex:page>

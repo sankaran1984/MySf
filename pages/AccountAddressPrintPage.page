@@ -1,0 +1,30 @@
+<apex:page standardController="Account" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false" renderAs="pdf">
+    <html>
+        
+        <head>
+            <style>
+                @page {
+                  size:22cm 11cm;
+                  margin-top:10px;
+                  margin-right:10px;
+                  margin-left:10px;
+                  margin-bottom:20px;
+                }
+            </style>
+        </head>
+    
+        <body>
+            <div>
+                <pre id="Address">
+                    To
+                        {!Account.Name}
+                        {!Account.BillingStreet}
+                        {!Account.BillingCity}
+                        {!Account.BillingState}
+                        {!Account.BillingPostalCode}
+                        {!Account.BillingCountry}
+                </pre>         
+            </div>
+        </body>
+    </html>     
+</apex:page>

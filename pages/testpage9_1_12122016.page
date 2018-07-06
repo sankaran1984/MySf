@@ -1,0 +1,17 @@
+<apex:page >
+    
+    <!-- Template Page -->
+    
+    <apex:composition template="{!$Page.testpage9_12122016}">
+        <apex:define name="Header">
+            Im the Header Content
+        </apex:define>
+        <apex:define name="Content">
+            Im the Middle Content
+        </apex:define>
+        <apex:define name="Footer">
+            Im the Footer Content
+        </apex:define>        
+    </apex:composition>
+    
+</apex:page>

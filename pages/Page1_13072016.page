@@ -1,0 +1,3 @@
+<apex:page controller="Ctrlr1_13072016"  showHeader="false" sidebar="false" cache="false" standardStylesheets="false">
+    <apex:outputText value="SLA values is - {!Opportunity.Account.SLA_Expired__c}"/>
+</apex:page>

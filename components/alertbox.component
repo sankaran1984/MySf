@@ -1,0 +1,8 @@
+<apex:component >
+    <apex:attribute type="String" name="value" description="The message to be displayed to the user"/>
+    <script>
+    	if (document.readyState == 'complete') {
+    		window.alert('{!value}');
+        }
+    </script>
+</apex:component>

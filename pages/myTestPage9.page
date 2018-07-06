@@ -1,0 +1,12 @@
+<apex:page standardController="Merchandise__c" extensions="merExt2">
+    <apex:message />
+    <apex:form >
+        <apex:outputLabel >Price:</apex:outputLabel>
+        <apex:inputField value="{!Merchandise__c.Price__c}"/>
+        <apex:commandButton action="{!saveRec}" value="Save"/>
+    </apex:form>
+    <apex:form >
+        <apex:outputField value="{!Merchandise__c.name}"/>
+        <apex:inputField value="{!Merchandise__c.name}"/>
+    </apex:form>
+</apex:page>

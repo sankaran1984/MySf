@@ -1,0 +1,49 @@
+<apex:page controller="testMyPageCtrlr">
+    <apex:form >
+        <apex:param name="divIds" value="box1, box2" assignTo="{!divIds}"/>
+
+            <apex:actionFunction name="fun" action="{!invoke_fun1}" immediate="True" rerender="" rendered="{!isBlank(param1)}">
+                <apex:param name="param1" assignTo="{!param1}" value=""/>
+                <apex:param name="param2" assignTo="{!inpStr}" value=""/>
+            </apex:actionFunction>
+
+    </apex:form>
+    
+    NULL VALUE => {!If(isBlank(nullstr), 'its null', 'its not')}
+    
+    <apex:outputPanel id="box1">Loading...{!param1}- {!obj} {!obj1['ITALY']} {!obj3['Invoice__r']['Name']}</apex:outputPanel>  
+    <br/>
+    <apex:outputPanel id="box2">Loading...{!param2}</apex:outputPanel>
+    
+    mGrpToCount => {!mGrpToCount['Sankaran']}
+    <apex:repeat value="{!mGrpToCount['Sankaran']}" var="s" rendered="{!!isBlank(mGrpToCount['Sankaran'])}">
+        {!mGrpToCount}
+    </apex:repeat>
+    
+    <apex:variable value="{!0}" var="count"/>
+    <apex:repeat value="{!mGrpToCount}" var="r">
+        <apex:variable value="{!count + 1}" var="count"/>
+    </apex:repeat>
+    {!count}
+    
+    
+    <script>
+    	window.onload = function(){
+            var INTERVIEWS_BOOKED_BY_TS_SOQL = 
+                'Select count(id), Telesales_Caller__r.Name from Opportunity '+
+                    'where ' +
+                        'Region__c IN :myRegion AND ' +
+                        'Interview_Status__c=\'Booked\' AND ' +
+                        'StageName IN (\'Qualified Lead\',\'In Progress\',\'Enquiry\') AND ' +
+                        'OwnerId IN :teamMembersList AND ' +
+                        'Interview_Date__c = THIS_WEEK AND ' +
+                        'Id In ( ' +
+                            'select whatId ' +
+                                'from Event ' +
+                            'where  ' +
+                                'Subject IN (\'Phone Interview%\', \'In Person Interview\') ) ' +
+                                'Group by Telesales_Caller__r.Name Order by Count(id) Desc ';
+            fun(INTERVIEWS_BOOKED_BY_TS_SOQL, '{"soql":"SELECT * FROM USER", "count_sql": true}');
+        }
+    </script>
+</apex:page>

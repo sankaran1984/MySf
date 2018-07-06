@@ -1,0 +1,11 @@
+<apex:page controller="testcls8_12122016" >
+    
+    <apex:form >
+        
+        <c:testcmp8_12122016 myDate="{!mdc}" id="myComp"/>
+        
+        <apex:commandButton value="Add one day" action="{!addDay}" reRender="myComp"/>
+        
+    </apex:form>
+    
+</apex:page>

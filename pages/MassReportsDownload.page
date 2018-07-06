@@ -1,0 +1,37 @@
+<apex:page controller="MassReportsDownloadCtrlr">
+    <apex:sectionHeader title="Report Mass Download"/>
+    
+    <apex:form >
+        <apex:pageblock >
+            <apex:actionFunction name="saveUserSelection" action="{!saveUserSelection}" reRender="none"/>
+            
+            <apex:pageBlockButtons >
+                <button class="downloadBtnCls" onclick="downloadClicked();"> 
+                    Download Selected
+                </button>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockTable value="{!lsReports}" var="rec">
+                <apex:column headerValue="Select">
+                    <apex:inputCheckbox styleClass="inpChkCls" value="{!rec.isSelected}"/>
+                </apex:column>
+                <apex:column headerValue="Report Name" value="{!rec.rep.Name}"/>
+                <apex:column headerValue="Download Link">
+                    <apex:outputLink value="/{!rec.rep.Id}?excel=Printable View" target="_blank">
+                        Download Link
+                    </apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageblock>
+    </apex:form> 
+    
+    <script>
+    	function downloadClicked() {
+            document.querySelectorAll('.inpChkCls:checked').forEach(function(checkBox) {
+                checkBox.parentElement.parentElement.querySelector('a').click();
+            });
+            
+            saveUserSelection();
+        }
+    </script>
+</apex:page>

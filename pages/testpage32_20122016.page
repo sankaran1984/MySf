@@ -1,0 +1,25 @@
+<apex:page standardController="Opportunity" extensions="testext32_20122016">
+    
+    <!-- Collection of Unique Page error messages at one place -->
+    <apex:pageMessages />
+    
+    <!-- Static Page Message which can be either displayed or hide, depending on some value -->
+    <apex:pageMessage severity="warning" detail="Organization locked now. Thanks for trying though"
+                      strength="3"/>
+    
+    <apex:form >
+        
+        <!-- Error Message for this section -->
+        <apex:messages />
+        
+        <apex:outputLabel value="Name "/>
+        <apex:inputField value="{!Opportunity.Name}" id="OppName"/>
+        
+        <apex:commandButton value="Save" action="{!save}"/>
+        
+        <!-- Custom Error Message on Field Error -->
+        <apex:message for="OppName" style="color:green;"/>
+        
+    </apex:form>
+    
+</apex:page>

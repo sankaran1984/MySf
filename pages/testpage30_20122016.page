@@ -1,0 +1,34 @@
+<apex:page standardController="Opportunity">
+    
+    <apex:pageBlock >
+        
+        <apex:pageBlockSection >
+            
+            <!-- Iterating through fieldset -->
+            <apex:repeat value="{!$ObjectType.Opportunity.FieldSets.OppFieldSet}"
+                         var="field">
+                
+                <apex:pageBlockSectionItem >
+                    
+                    <!-- Label -->
+                    <apex:outputPanel layout="none">
+                        <!-- Field Label -->
+                        <apex:outputLabel value="{!$ObjectType.Opportunity.fields[field].Label}"
+                            rendered="{!NOT(CONTAINS(field, '.'))}"/>
+                        
+                        <!-- Parent Field Label -->
+                        <apex:outputLabel value="{!field}" rendered="{!CONTAINS(field, '.')}"/>
+                    </apex:outputPanel>    
+
+					<!-- Field value -->                    
+                    <apex:outputField value="{!Opportunity[field]}"/>
+                    
+                </apex:pageBlockSectionItem>            
+                                
+            </apex:repeat>
+            
+        </apex:pageBlockSection>    
+        
+    </apex:pageBlock>        
+    
+</apex:page>

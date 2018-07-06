@@ -1,0 +1,22 @@
+<apex:page >
+    
+    <!-- OutputLink - Using Param tag -->
+    <apex:outputLink value="{!$Page.testpage12_102122016}">
+        <apex:param name="param1" value="Hello"/>
+        <apex:param name="param2" value="Sankaran"/>
+        Click Here 
+    </apex:outputLink>
+    
+    <!-- Output - Parameter 1 -->
+    <apex:outputPanel layout="block" rendered="{!$CurrentPage.Parameters.param1 != Null}">
+    	<apex:sectionHeader title="Parameter 1"/>
+        <apex:outputText value="{!$CurrentPage.Parameters.param1}"/>
+	</apex:outputPanel>        
+                        
+    <!-- Output - Parameter 2 -->
+    <apex:outputPanel layout="block" rendered="{!$CurrentPage.Parameters.param2 != Null}">
+    	<apex:sectionHeader title="Parameter 2"/>
+        <apex:outputText value="{!$CurrentPage.Parameters.param2}"/>
+	</apex:outputPanel>
+    
+</apex:page>

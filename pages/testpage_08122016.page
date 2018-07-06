@@ -1,0 +1,30 @@
+<apex:page >
+    
+    <style>
+        .myClass {
+        	border : 2px solid red;
+        }
+    </style>
+    
+    <apex:form >
+    
+        <apex:panelGrid columns="2">
+        
+            <!-- Input Components -->
+            <apex:outputText value="Enter your name"/>
+            <apex:inputText styleClass="myClass"/>    
+            
+            <!-- Output Components -->
+            <apex:outputText value="Company Name"/>
+            <apex:outputText value="Nepz Solutions Ltd" styleClass="myClass"/>    
+            
+            <!-- Navigation Control Components -->
+            <apex:commandLink value="javascript:void(0);" styleClass="myClass">
+                click me
+            </apex:commandLink>
+            
+        </apex:panelGrid>   
+        
+	</apex:form>        
+    
+</apex:page>

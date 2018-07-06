@@ -1,0 +1,102 @@
+<apex:page contentType="text/javascript">
+    
+    function ButtonsMenu(btn, options){
+        
+        var menu;
+        var buttonState;
+        
+        //Fire click event
+        onButtonClicked(btn);
+        
+        function onButtonClicked(btn){
+            menu = document.getElementById(btn.parentElement.id+'_menu');
+            if(!menu){ 
+                menu = createMenu(btn.parentElement.id+'_menu', btn);
+                buttonState = {
+                    label : btn.value,
+                    bgcolor : btn.style.color,
+                    disabled : btn.disabled
+                }
+            }
+            toggleDisplay(menu);
+            positionUnder(btn, menu);    
+        }
+        
+        function createMenu(name, btn){
+            var outerDiv = document.createElement('div');
+            outerDiv.id = name;
+            outerDiv.style.height = '100px';
+            outerDiv.style.width = btn.offsetWidth+'px';
+            outerDiv.style.position = 'absolute';
+            outerDiv.style.backgroundColor = 'white';
+            outerDiv.style.cursor = 'pointer';
+            
+            //go through each option and create menu item
+            options.forEach(function(value, index){
+                outerDiv.appendChild(createDiv(value.Label, function(btn){
+                return function(){
+                    //pre UI changes
+                    toggleDisplay(menu);
+                    freezeButton(btn);
+                    
+                    //Action
+                    value.onClick();
+                }
+                }(btn)));			
+            });
+    
+            btn.parentElement.appendChild(outerDiv);
+    
+            return outerDiv;
+        }
+        
+        function createDiv(name, onClickFn){
+            
+            var div = document.createElement('div');
+            div.style.lineHeight = '25px';
+            div.style.borderBottom = '1px solid';
+            div.style.paddingLeft = '5px';
+    		div.style.backgroundColor = 'white';
+            div.onclick = onClickFn;
+            
+            div.onmouseenter = function(){
+                div.style.backgroundColor = '#badae4';
+            }
+            
+            div.onmouseleave = function(){
+                div.style.backgroundColor = 'white';
+            }
+            
+            var text = document.createTextNode(name);
+            div.appendChild(text);
+            return div;
+        }
+        
+        function positionUnder(parent, node){
+            node.style.position = 'absolute';
+            node.style.left = parent.offsetLeft+'px';
+            node.style.top = (parent.offsetTop + parent.offsetHeight)+'px';  
+            parent.parentElement.style.position = 'relative';
+        }
+        
+        function toggleDisplay(node){
+            node.style.display = node.style.display!='block'?'block':'none';
+        }
+        
+        function freezeButton(btn){
+    		btn.value = 'Please wait';
+            btn.disabled = true;
+            btn.style.color = '#c1b7b7';
+        }
+        
+        function resetButtonBack(){
+            btn.value = buttonState.label;
+            btn.disabled = buttonState.disabled;
+            btn.style.color = buttonState.bgcolor;
+        }
+    
+    	return {
+    		resetButtonBack : resetButtonBack
+    	}
+    }	
+</apex:page>

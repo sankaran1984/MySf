@@ -1,0 +1,6 @@
+<apex:page >
+    <apex:slds />
+    <span class="slds-icon_container slds-icon--small slds-icon-standard-account" title="Contact Avatar">
+        <img src="{!URLFOR($Asset.SLDS, 'assets/images/avatar1.jpg')}" alt="Contact Avatar" />
+    </span>
+</apex:page>

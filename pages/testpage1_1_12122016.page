@@ -1,0 +1,7 @@
+<apex:page contentType="text/javascript#MyScript.js">
+
+    function globalFunction() {
+    	alert('Hi, im global function');
+    }
+    
+</apex:page>

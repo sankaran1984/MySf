@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>TypeToCustomer</fullName>
+        <field>Type</field>
+        <literalValue>Customer</literalValue>
+        <name>TypeToCustomer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TypeToPending</fullName>
+        <field>Type</field>
+        <literalValue>Pending</literalValue>
+        <name>TypeToPending</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>TypeToProspect</fullName>
+        <field>Type</field>
+        <literalValue>Prospect</literalValue>
+        <name>TypeToProspect</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <outboundMessages>
+        <fullName>Send_Status_Change</fullName>
+        <apiVersion>34.0</apiVersion>
+        <endpointUrl>https://gustavo.havenpower.com/ServiceProxy/HealthCheck/Version</endpointUrl>
+        <fields>Id</fields>
+        <includeSessionId>false</includeSessionId>
+        <integrationUser>s_a_n_k_a_r_a_n@yahoo.co.in</integrationUser>
+        <name>Send Status Change</name>
+        <protected>false</protected>
+        <useDeadLetterQueue>false</useDeadLetterQueue>
+    </outboundMessages>
+</Workflow>
