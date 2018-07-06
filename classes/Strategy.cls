@@ -29,7 +29,8 @@ public class Strategy {
             return si.getTemperature();
         }
     }    
-    
+
+	/* This function returns the current temperature */	    
     Public Static String getCurrentTemperature(String serviceName){
         if(String.isBlank(serviceName)) return Null;
         
