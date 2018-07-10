@@ -33,7 +33,8 @@ public class Strategy {
 	/* This function returns the current temperature */	    
     Public Static String getCurrentTemperature(String serviceName){
         if(String.isBlank(serviceName)) return Null;
-        
+
+		System.debug('serviceName - ' + serviceName);        
         ServiceConsumer s = new ServiceConsumer();
         return s.getTemperature(serviceName);
     }
