@@ -5,7 +5,8 @@ global class AccountCreation {
         if (String.isBlank(parentId)) {
             return 'Parent Account is missing';
         }
-        
+
+		System.debug('parentId - ' + parentId);        
         String recTypeId = Account.sObjectType.getDescribe().getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
         if (String.isBlank(recTypeId)) {
             return recTypeName + ' Record Type is invalid';
