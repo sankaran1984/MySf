@@ -4,6 +4,7 @@ global class AccountCreation {
 
         System.debug(parentId + ' test ' + recTypeName + ' ' +accName);
         System.debug(parentId + ' test1' + recTypeName + ' ' +accName);
+        System.debug(parentId + ' test3' + recTypeName + ' ' +accName);	    
         
         if (String.isBlank(parentId)) {
             return 'Parent Account is missing';
