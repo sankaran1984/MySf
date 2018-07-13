@@ -2,8 +2,7 @@ global class AccountCreation {
 
     webservice static String createAccount(String parentId, String recTypeName, String accName) {
 
-        System.debug(parentId + ' test1 ' + recTypeName + ' ' +accName);
-        System.debug(parentId + ' test2 ' + recTypeName + ' ' +accName);
+        System.debug(parentId + ' test3 ' + recTypeName + ' ' +accName);
         
 		if (String.isBlank(parentId)) {
             return 'Parent Account is missing';
